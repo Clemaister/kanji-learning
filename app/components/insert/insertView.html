@@ -8,11 +8,7 @@
             <input type='text' ng-model='reading.hiragana' placeholder='おきる' required/>
             <input type='text' ng-model='reading.romaji' placeholder='okiru' required/>
             <div class='categories' ng-repeat="readingCat in reading.categories track by $index">
-                <select ng-model="reading.categories[$index]" ng-options="category.id as category.desc for category in categories">
-                    <!--<option ng-selected="{{category.id == readingCat.id}}" ng-repeat="category in categories" value="{{category.id}}" required>
-                        {{category.desc}}
-                    </option>-->
-                </select>
+                <select ng-model="reading.categories[$index]" ng-options="category.id as category.desc for category in categories"></select>
             </div>
             <button type='button' ng-click='addCategory($index)'>+</button>
         </div>
