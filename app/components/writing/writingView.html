@@ -1,0 +1,32 @@
+<header ng-top-bar title="Writing" with-back="picker"></header>
+<section class='main-container'>
+    <ng-loading ng-show="loading"></ng-loading>
+    <div class='question-container writing' ng-show="!loading">
+        <div class='kanji-box'>
+            <span>{{readings[currentReading].hiragana}}</span>
+            
+            <div class="answer-box">
+                <div ng-if="displayAnswer && correct" class="result-box">
+                    <span class="correct">Correct !</span>
+                </div>
+                <div ng-if="displayAnswer && !correct" class="result-box">
+                    <span class="incorrect">Wrong</span><br>
+                    <span class='explanation'>The correct answer was <span class='green-text'>{{readings[currentReading].name}}</span></span></div>
+            </div>
+            
+        </div>
+        <div class='question-box'  ng-show="!loading">
+            <div class='input-container'>
+                <canvas  class='effect2' ng-mousedown="startDrawing($event.clientX, $event.clientY)" ng-mousemove="draw($event.clientX, $event.clientY)" ng-mouseup="finishedDrawing()"></canvas>
+                <div class='controls'>
+                    <button type="button" ng-click="clear()" class='fa fa-eraser'></button>
+                    <button type="button" ng-click="verify()" ng-disabled="displayAnswer" class='fa fa-check-circle'></button>
+                    <button type="button" ng-click="next()" ng-disabled="!displayAnswer" class='fa fa-arrow-right'></button>
+                </div>
+                <div class='box effect2'></div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="progression" ng-show="!loading">{{(currentQuestion)}}/{{totalQuestions}}</div>
+<footer ng-stats></footer>

@@ -1,0 +1,12 @@
+<header ng-top-bar title="Results"></header>
+<section class='main-container'>
+    <div class='results-container'>
+        <div class='score'>{{results.corrects.length}}/{{results.totalQuestions}}</div>
+        <div class='percentage'>{{results.percentage}}%</div>
+        <div class='options'>
+            <button ng-if='results.incorrects.length!=0' type='button' ng-click='retryFailedKanjis()'>Retry failed kanji</button>
+            <button type='button' ng-click='retry()'>Try again</button>
+            <button type='button' ng-click='back()'>New exercice</button>
+        </div>
+    </div>
+</section>

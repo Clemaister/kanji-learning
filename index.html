@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="kanjiLearning">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<base href="/kanji-learning/">
+<head>
+    <title>Kanji learning</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/insert.css">
+    <link rel="stylesheet" href="assets/css/exercice.css">
+    <link rel="stylesheet" href="assets/css/results.css">
+    <link rel="stylesheet" href="assets/css/stats.css">
+    <link rel="stylesheet" href="assets/css/top-bar.css">
+    <link rel="stylesheet" href="assets/css/picker.css">
+    <link rel="stylesheet" href="assets/css/dictionnary.css">
+    <script type="application/javascript" src="assets/libs/angular.js"></script>
+    <script type="application/javascript" src="assets/libs/angular-route.min.js"></script>
+    <script type="application/javascript" src="assets/libs/jquery.js"></script>
+    <script type="application/javascript" src="app/app.module.js"></script>
+    <script type="application/javascript" src="app/app.routes.js"></script>
+    <script type="application/javascript" src="app/shared/services/userInfoFactory.js"></script>
+    <script type="application/javascript" src="app/components/menu/menuController.js"></script>
+    <script type="application/javascript" src="app/components/reading/readingController.js"></script>
+    <script type="application/javascript" src="app/components/writing/writingController.js"></script>
+    <script type="application/javascript" src="app/components/results/resultsController.js"></script>
+    <script type="application/javascript" src="app/components/picker/pickerController.js"></script>
+    <script type="application/javascript" src="app/components/insert/insertController.js"></script>
+    <script type="application/javascript" src="app/components/dictionnary/dictionnaryController.js"></script>
+    <script type="application/javascript" src="app/shared/stats/statsDirective.js"></script>
+    <script type="application/javascript" src="app/shared/top-bar/topBarDirective.js"></script>
+    <script type="application/javascript" src="app/shared/loading/loadingDirective.js"></script>
+</head>
+<body>
+    <ng-loading ng-show="false"></ng-loading>
+    <div class='main-view' ng-view></div>
+</body>
+</html>

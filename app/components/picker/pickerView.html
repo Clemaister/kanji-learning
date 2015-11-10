@@ -1,0 +1,19 @@
+<header ng-top-bar title="Select exercice" with-back="/"></header>
+<section class='main-container'>
+    <div class='picker-container'>
+        <ng-loading ng-show="loading"></ng-loading>
+        <div class='type' ng-repeat='type in types'>
+            <input type='radio' id="{{'type-'+type.id}}" ng-model='userChoice.type' value='{{type.id}}' />
+            <label class='radio-label' for="{{'type-'+type.id}}">{{type.desc}}</label>
+        </div><br>
+        <div class='category' ng-repeat='category in categories'>
+            <input type='radio' id="{{'cat-'+category.id}}" ng-model='userChoice.category' value='{{category.id}}' />
+            <label class='radio-label' for="{{'cat-'+category.id}}">{{category.desc}}</label>
+        </div><br>
+        <div class='nb-question' ng-repeat='nbQuestion in nbQuestions'>
+            <input type='radio' id="{{'nb-'+nbQuestion}}" ng-model='userChoice.nbQuestions' value='{{nbQuestion}}' />
+            <label class='radio-label' for="{{'nb-'+nbQuestion}}">{{(nbQuestion!=0) ? nbQuestion : "All"}}</label>
+        </div><br>
+        <button class='confirm-button' type="button" ng-click="startExercice()">Start the test</button>
+    </div>
+</section>

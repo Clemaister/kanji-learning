@@ -1,0 +1,44 @@
+<header ng-top-bar title="Dictionnary" with-back="/"></header>
+<section class='main-container'>
+    <div class='dictionnary-container'>
+        <div class='controls'>
+            <input type='text' class='search-kanji' ng-model='searchKanji' placeholder='Search by kanji, by category name or by readings'/>
+            <div class='fav-only'>
+                <p>Favorites only</p>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" ng-click="favOnly=!favOnly">
+                    <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <ng-loading ng-show="loading"></ng-loading>
+        <table ng-show="!loading" class='dictionnary'>
+            <tr class='first'>
+                <th class='left'>Kanji</th>
+                <th class='right'>Readings</th>
+            </tr>
+            <tr ng-repeat="kanji in filtered = (kanjis | filter:searchKanji)" ng-show="!favOnly || (favOnly && kanji.favorite)">
+                <td class='kanji'>{{kanji.name}}</td>
+                <td>
+                    <table class='multiline readings'>
+                        <tr ng-repeat="reading in kanji.readings">
+                            <td>
+                                <table class='multiline'>
+                                    <tr ng-repeat="category in reading.categories"><td>{{category.desc}}</td></tr>
+                                </table>
+                            </td>
+                            <td class='name'>{{reading.name}}</td>
+                            <td class='hiragana'>{{reading.hiragana}}</td>
+                            <td class='romaji'>{{reading.romaji}}</td>
+                            <td class='favorite fa' ng-class="setStarClass($parent.$index, $index)" ng-click="toggleFavorite($parent.$index, $index)"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class='last'><td class='left'></td><td class='right'><p ng-show="filtered.length==0">No Kanji was found</p></td></tr>
+        </table>
+    </div>
+</section>

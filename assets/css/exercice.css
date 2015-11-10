@@ -1,0 +1,321 @@
+.question-container, 
+.results-container{
+    display: block;
+    margin: auto;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.reading .kanji-box{
+    display:block;
+    width: 100%;
+    padding-bottom: 40px;
+    text-align: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+.writing .kanji-box{
+    display:inline-block;
+    padding-bottom: 40px;
+    text-align: center;
+    margin: auto;
+    overflow: hidden;
+    float: left;
+    width: 50%;
+}
+
+.kanji-box span{
+    font-family: "Yuzu";
+    display: inline-block;
+    color: #292f33;
+    font-size: 100px;
+    word-break: break-all;
+}
+
+.reading .question-box{
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+.writing .question-box{
+    display: inline-block;
+    margin: auto;
+    float: right;
+    width: 50%;
+}
+
+.input-container{
+    display: inline-block;
+    display: block;
+    width: 70%;
+    margin: auto;
+}
+
+.writing .input-container{
+    width: auto;
+}
+
+.input-container input{
+    font-family: "Yuzu";
+    width: 90%;
+    height: 50px;
+    font-size: 40px;
+    margin: auto;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    border-bottom: 2px solid grey;
+    padding-left: 10px;
+    margin-right: 5px;
+}
+
+.input-container canvas{
+    display: block;
+    margin: auto;
+    width: 600px;
+    height: 300px;
+    cursor: url('//ssl.gstatic.com/inputtools/images/pencil.png') 0 10, auto;
+    background-image: url(../img/paper.png);
+    background-size: cover;
+    border: 1px solid lightgray;
+    background-color: #f7f7f7;
+}
+
+.effect2{
+  position: relative;
+}
+
+.effect2:before, .effect2:after{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+
+.effect2:after{
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+.writing .controls{
+    width: 300px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.input-container button{
+    height: 50px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    vertical-align: middle;
+    display: inline-block;
+    margin: auto;
+    border: none;
+    font-size: 30px;
+    background: #64C1C9;
+    color: white;
+    cursor: pointer;
+}
+
+.input-container button:hover{
+    opacity: 0.75;
+}
+
+.writing .input-container button:disabled{
+    opacity: 0.4;  
+}
+
+.writing .input-container button{
+    width: 32%;
+}
+
+.answer-box{
+    display: block;
+    margin: auto;
+    min-height: 100px;
+    margin-bottom: 50px
+}
+
+.answer-box button{
+    display: inline-block;
+    width: 20%;
+    height: 70px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 30px;
+    vertical-align: middle;
+    border: none;
+    background: #64C1C9;
+    color: white;
+    cursor: pointer;
+}
+
+.answer-box button:hover{
+    opacity: 0.75;
+}
+
+.result-box{
+    display: inline-block;
+    font-size: 70px;
+    text-align: center;
+    width: 73%;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+.result-box span{
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.result-box .incorrect{
+    color: #ce3838;
+}
+
+.result-box .correct{
+    color: #0F6D00;
+}
+
+.explanation{
+    font-size: 30px; 
+    color: #777777;
+}
+
+span.green-text{
+    color: #0F6D00;
+    font-family: "Yuzu";
+}
+
+.current-categories{
+    font-size: 2vmin;
+    text-align: center;
+}
+
+.progression{
+    display: block;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    padding-right: 5px;
+    font-size: 20px;
+    height: 50px;
+    z-index: 3;
+    line-height: 50px;
+    color: white;
+}
+
+
+@media screen and (max-width: 800px) {
+    
+    .question-container, 
+    .results-container{
+        margin-top: 0px;
+    }
+    
+    .input-container,
+    .writing .kanji-box,
+    .writing .question-box,
+    .input-container canvas,
+    .writing .controls{
+        width: 100%;
+    }
+    .writing .kanji-box{
+        height: 20%; 
+        padding-bottom: 0px;
+    }
+    .input-container canvas{
+        height: 700px;
+    }
+    
+    .kanji-box,
+    .question-box{
+        display: block !important;
+        float: none !important;
+    }
+    
+    .kanji-box span{
+        font-size: 50px;
+    }
+    
+    .input-container input,
+    .result-box,
+    .result-box span{
+        font-size: 20px;
+    }
+    
+    .writing .result-box{
+        margin-top: 0px;
+    }
+    
+    .reading .answer-box button{
+        width: 20%;
+        font-size: 20px;
+    }
+    
+    .writing .answer-box{
+        margin-bottom: 0px;
+        min-height: 75px;
+    }
+    
+    .writing .answer-box button{
+        width: 100%;   
+    }
+    
+    .input-container input{
+        width: 70%;
+    }
+    
+    .writing .input-container button{
+        font-size: 20px;
+    }
+    
+    
+}
+
+@media screen and (max-width: 600px) {
+    .input-container canvas{
+        height: 550px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .input-container canvas{
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 384px) {
+    .input-container canvas{
+        height: 200px;
+    }
+}
+
+
+@media screen and (max-width: 375px) {
+    .input-container canvas{
+        height: 150px;
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    .writing .kanji-box span{
+        font-size: 30px;
+    }
+    .input-container canvas{
+        height: 130px;
+    }
+}

@@ -1,0 +1,137 @@
+.picker-container{
+    width: 960px;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.picker-container h2{
+    color: white;
+    text-align: center;
+}
+
+.picker-container input[type='radio']{
+    display: none;
+}
+
+.picker-container .type{
+    display: inline-block;
+    width: 150px;
+    height: 70px;
+    margin: 5px;
+}
+
+.picker-container .type:hover{
+    opacity: 0.75;
+}
+
+.picker-container .type .radio-label:before {
+    content:'';
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+
+.picker-container .type .radio-label{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background: #59ADEA;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.picker-container .type input[type="radio"]:checked + .radio-label{ 
+    background: #4185b7;
+} 
+
+.picker-container .category{
+    display: inline-block;
+    width: 150px;
+    height: 70px;
+    line-height: 70px;
+    margin: 5px;
+}
+
+.picker-container .category:hover{
+    opacity: 0.75;
+}
+
+.picker-container .category .radio-label:before {/* this can be an extra tag within HTML structure if pseudo used for other purpose */
+    content:'';
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+
+.picker-container .category .radio-label{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background: #47BEBF;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.picker-container .category input[type="radio"]:checked + .radio-label{ 
+    background: #209495;
+} 
+
+.picker-container .nb-question{
+    display: inline-block;
+    width: 150px;
+    height: 70px;
+    line-height: 70px;
+    margin: 5px;
+}
+
+.picker-container .nb-question:hover{
+    opacity: 0.75;
+}
+
+.picker-container .nb-question .radio-label:before {/* this can be an extra tag within HTML structure if pseudo used for other purpose */
+    content:'';
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+
+.picker-container .nb-question .radio-label{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background: #35CE94;
+    border-radius: 5px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.picker-container .nb-question input[type="radio"]:checked + .radio-label{ 
+    background: #06774D;
+}
+
+@media screen and (max-width: 800px) {
+    
+    .picker-container{
+        width: 100%;
+        margin-top: 0px;
+    }
+    
+    .picker-container .type,
+    .picker-container .category,
+    .picker-container .nb-question{
+        display: block;
+        margin: auto;
+        width: 90%;
+        margin-bottom: 10px;
+    }
+}
+
+

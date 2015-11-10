@@ -1,0 +1,25 @@
+<header ng-top-bar title="Reading" with-back="picker"></header>
+<section class='main-container'>
+    <ng-loading ng-show="loading"></ng-loading>
+    <div class='question-container reading' ng-show="!loading">
+        <div class='kanji-box'>
+            <span>{{readings[currentReading].name}}</span>
+        </div>
+        <div class='question-box'  ng-show="!loading">
+            <div class='input-container'>
+                <input type="text" ng-model="user.answer" ng-keydown="verify($event)" placeholder="ひらがなの読み方" /><button type="button" ng-click="verify()" ng-disabled="displayAnswer" class='fa fa-arrow-right'></button>
+            </div>
+            <div class="answer-box">
+                <div ng-if="displayAnswer && correct" class="result-box">
+                    <span class="correct">Correct !</span>
+                </div>
+                <div ng-if="displayAnswer && !correct" class="result-box">
+                    <span class="incorrect">Wrong</span><br>
+                    <span class='explanation'>The correct answer was <span class='green-text'>{{readings[currentReading].hiragana}}</span></span></div>
+                <button ng-if="displayAnswer" type="button" ng-click="next()" class='fa fa-check-circle'></button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="progression" ng-show="!loading">{{(currentQuestion)}}/{{totalQuestions}}</div>
+<footer ng-stats></footer>

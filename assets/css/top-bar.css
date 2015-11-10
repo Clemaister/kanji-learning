@@ -1,0 +1,45 @@
+.top-bar{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#59adea+0,35ce94+100 */
+    background: #59adea; /* Old browsers */
+    background: -moz-linear-gradient(left,  #59adea 0%, #35ce94 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#59adea), color-stop(100%,#35ce94)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #59adea 0%,#35ce94 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #59adea 0%,#35ce94 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #59adea 0%,#35ce94 100%); /* IE10+ */
+    background: linear-gradient(to right,  #59adea 0%,#35ce94 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59adea', endColorstr='#35ce94',GradientType=1 ); /* IE6-9 */
+
+}
+
+.top-bar .page-title{
+    height: 100%;
+    display: inline-block;
+    font-size: 30px;
+}
+
+.top-bar .back-button{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 35px;
+    padding-left: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.top-bar .back-button:hover{
+    opacity: .75;
+}

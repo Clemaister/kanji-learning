@@ -1,0 +1,36 @@
+.insert-container{
+    margin: auto;
+    width: 70%;
+    position: absolute;
+    top:22%;
+    left:15%;
+    border-radius: 10px;
+    padding: 4%;
+}
+
+.categories{
+    display: inline;
+}
+
+.edit{
+    margin-left: 5px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .insert-container{
+        width: 100%;
+        top: 100px;
+        left: 0px;
+        border-radius: 0px;
+        padding: 2%;
+    }
+    
+    .insert-container input{
+        width: 95%;   
+    }
+    
+    .edit{
+        margin: 0px;
+    }
+}

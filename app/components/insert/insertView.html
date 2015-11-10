@@ -1,0 +1,23 @@
+<header ng-top-bar title="Insert" with-back="menu"></header>
+<section class='main-container'>
+    <form class='insert-container'>
+        <input type='text' ng-model='searchName' placeholder='Reading to search'/><button type='button' ng-click='edit()' class='edit'>Edit</button>
+        <br><br>
+        <div class='readings' ng-repeat='reading in readings'>
+            <input type='text' ng-model='reading.name' placeholder='起きる' required/>
+            <input type='text' ng-model='reading.hiragana' placeholder='おきる' required/>
+            <input type='text' ng-model='reading.romaji' placeholder='okiru' required/>
+            <div class='categories' ng-repeat="readingCat in reading.categories track by $index">
+                <select ng-model="reading.categories[$index]" ng-options="category.id as category.desc for category in categories">
+                    <!--<option ng-selected="{{category.id == readingCat.id}}" ng-repeat="category in categories" value="{{category.id}}" required>
+                        {{category.desc}}
+                    </option>-->
+                </select>
+            </div>
+            <button type='button' ng-click='addCategory($index)'>+</button>
+        </div>
+        <br>
+        <button type='button' ng-click='addReading()'>+</button>
+        <button type='submit' ng-click='submit()'>Submit</button>
+    </form>
+</section>
