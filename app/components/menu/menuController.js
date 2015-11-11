@@ -1,5 +1,6 @@
 app.controller("menuController", function($scope, $http, $location, userInfo){
     
+    $scope.loading=true;
     $scope.kanjis=[];
     $scope.readings=[];
     $scope.knownReadings=0;
@@ -26,6 +27,7 @@ app.controller("menuController", function($scope, $http, $location, userInfo){
         else $scope.rank='beginner';
         $scope.rankName= $scope.rank.charAt(0).toUpperCase() + $scope.rank.slice(1);
         $scope.initOdometer();
+        $scope.loading=false;
     }
     
     $scope.parseReadings = function(){

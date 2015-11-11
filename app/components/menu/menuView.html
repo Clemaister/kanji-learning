@@ -1,11 +1,17 @@
 <header ng-top-bar title="Kanji Learning"></header>
 <section class='main-container'>
     <div class='menu-container'>
+        
         <div class='square-button' ng-click="goTo('dictionnary')">Dictionnary</div>
         <div class='square-button' ng-click="goTo('picker')">Exercices</div>
         <div class='square-button' ng-click="goTo('statistics')">Statistics</div>
-        <p class='you-know-readings'>You can read <span class='known-readings odometer'></span> kanjis ({{readings.length-knownReadings}} to go).</p>
-        <p class='you-know-writings'>You can write <span class='known-writings odometer'></span> kanjis ({{readings.length-knownWritings}} to go).</p>
-        <div class='your-rank'>Your rank: <span class='user-rank'>{{rankName}}</span></div>
+        
+        <ng-loading ng-show="loading"></ng-loading>
+            <div ng-show="!loading">
+            <p class='you-know-readings'>You can read <span class='known-readings odometer'></span> kanjis ({{readings.length-knownReadings}} to go).</p>
+            <p class='you-know-writings'>You can write <span class='known-writings odometer'></span> kanjis ({{readings.length-knownWritings}} to go).</p>
+            <div class='your-rank'>Your rank: <span class='user-rank'>{{rankName}}</span></div>
+        </div>
+        
     </div>
 </section>
