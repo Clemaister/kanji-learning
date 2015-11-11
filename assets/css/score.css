@@ -1,4 +1,4 @@
-.user-stats{
+.user-score{
     height: 50px;
     position: fixed;
     bottom: 0px;
@@ -11,28 +11,28 @@
 
 }
 
-.user-stats .nb-correct{
+.user-score .nb-correct{
     width: 50%;
     height: 100%;
     float: right;
     background-color: #59adea;
 }
 
-.user-stats .nb-incorrect{
+.user-score .nb-incorrect{
     width: 50%;
     height: 100%;
     float: left;
     background-color: #35ce94;
 }
 
-.user-stats .title{
+.user-score .title{
     width: 50%;
     height: 100%;
     text-align: center;
     float: left;
 }
 
-.user-stats .nb{
+.user-score .nb{
     width: 50%;
     height: 100%;
     float: right;
@@ -41,7 +41,7 @@
 
 @media screen and (max-width: 800px) {
 
-    .user-stats{
+    .user-score{
         font-size: 15px;
         top: 50px;
     }

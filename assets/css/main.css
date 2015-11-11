@@ -23,9 +23,42 @@ html, .main-view{
 }
 
 .menu-container{
-    width: 545px;
+    width: 820px;
     margin: auto;
     margin-top: 5%;
+    text-align: center;
+}
+
+.you-know-readings{
+    margin: 0px;
+    color: grey;
+    margin-top: 50px;
+}
+
+.you-know-writings{
+    margin: 0px;
+    color: grey;
+}
+
+.your-rank{
+    color: grey;
+    margin-bottom: 20px;
+}
+
+.user-rank{
+    color: #EA9E59;
+    font-size: 30px;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+}
+
+.known-readings{
+    color: #59adea;
+}
+
+.known-writings{
+    color: #3ACAA0;
 }
 
 .square-button{
@@ -132,6 +165,64 @@ html, .main-view{
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
+}
+
+.odometer{
+    font-size: 50px;
+}
+
+table{
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 100px;
+}
+
+table tr{
+    height: 100px;
+}
+
+table tr.first{
+    height: 50px;
+}
+
+table th{
+    text-align: center;
+    color: white;
+    font-weight: normal;
+}
+
+table th.left{
+    border-radius: 10px 0px 0px 0px;
+}
+
+table th.right{
+    border-radius: 0px 10px 0px 0px;
+}
+
+table tr.last{
+    height: 30px;
+    text-align: center;
+}
+
+table tr.last .left{
+    border-radius: 0px 0px 0px 10px;
+}
+
+table tr.last .right{
+    border-radius: 0px 0px 10px 0px;
+}
+
+table td{
+    color: white;
+}
+
+table tr:nth-child(even){
+    background-color: #7cbae5;
+}
+
+table tr:nth-child(odd){
+    background-color: #8cc5ed;
 }
 
 @media screen and (max-width: 800px) {

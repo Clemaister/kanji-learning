@@ -1,52 +1,6 @@
-.dictionnary-container .dictionnary{
-    width: 100%;
-    margin: auto;
-    border-collapse: collapse;
-    margin-bottom: 100px;
-}
-
 .dictionnary-container .dictionnary table{
     border-collapse: collapse;
     margin-bottom: 100px;
-}
-
-.dictionnary-container .dictionnary tr{
-    height: 100px;
-}
-
-.dictionnary-container .dictionnary tr.first{
-    height: 50px;
-}
-
-.dictionnary-container .dictionnary th{
-    text-align: center;
-    color: white;
-    font-weight: normal;
-}
-
-.dictionnary-container .dictionnary th.left{
-    border-radius: 10px 0px 0px 0px;
-}
-
-.dictionnary-container .dictionnary th.right{
-    border-radius: 0px 10px 0px 0px;
-}
-
-.dictionnary-container .dictionnary tr.last{
-    height: 30px;
-    text-align: center;
-}
-
-.dictionnary-container .dictionnary tr.last .left{
-    border-radius: 0px 0px 0px 10px;
-}
-
-.dictionnary-container .dictionnary tr.last .right{
-    border-radius: 0px 0px 10px 0px;
-}
-
-.dictionnary-container .dictionnary td{
-    color: white;
 }
 
 .dictionnary-container .dictionnary .multiline td{
@@ -67,14 +21,6 @@
     cursor: pointer;
     float: right;
     width: 60px;
-}
-
-.dictionnary-container .dictionnary tr:nth-child(even){
-    background-color: #7cbae5;
-}
-
-.dictionnary-container .dictionnary tr:nth-child(odd){
-    background-color: #8cc5ed;
 }
 
 .dictionnary-container .dictionnary .multiline{

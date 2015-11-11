@@ -3,7 +3,9 @@ app.factory('userInfo', function(){
     var _pickedExercice = {};
     var _results = {};
     var _nbQuestions = 0;
+    var _learntKanjis = (localStorage.learntKanjis) ? JSON.parse(localStorage.learntKanjis) : 0;
     var _favorites = (localStorage.favorites) ? JSON.parse(localStorage.favorites) : [];
+    var _progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : [];
     
     function setNbQuestions(nbQuestions){
         _nbQuestions=nbQuestions;    
@@ -33,6 +35,20 @@ app.factory('userInfo', function(){
         return _favorites;
     }
     
+    function incLearntKanjis(){
+        _learntKanjis++;
+        localStorage.learntKanjis=_learntKanjis;
+    }
+    
+    function decLearntKanjis(){
+        _learntKanjis--;
+        localStorage.learntKanjis=_learntKanjis;
+    }
+    
+    function getLearntKanjis(){
+        return _learntKanjis;
+    }
+    
     function toggleFavorite(favorite){
         var index=-1;
         for(var i=0; i<_favorites.length; i++){ 
@@ -53,6 +69,14 @@ app.factory('userInfo', function(){
         return found;
     }
     
+    function getProgression(){
+        return _progression;
+    }
+    
+    function setProgression(progression){
+        _progression=progression;
+    }
+    
     return {
         setNbQuestions: setNbQuestions,
         getNbQuestions: getNbQuestions,
@@ -62,7 +86,12 @@ app.factory('userInfo', function(){
         getResults: getResults,
         toggleFavorite: toggleFavorite,
         getFavorites: getFavorites,
-        isInFavorites: isInFavorites
+        isInFavorites: isInFavorites,
+        incLearntKanjis: incLearntKanjis,
+        decLearntKanjis: decLearntKanjis,
+        getLearntKanjis: getLearntKanjis,
+        getProgression: getProgression,
+        setProgression: setProgression
     }
     
 });

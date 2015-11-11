@@ -3,6 +3,34 @@ app.controller("resultsController", function($scope, $location, userInfo){
     $scope.results = ($.isEmptyObject(userInfo.getResults())) ? JSON.parse(localStorage.results) : userInfo.getResults();
     $scope.previousChoice = ($.isEmptyObject(userInfo.getPickedExercice())) ? JSON.parse(localStorage.pickedExercice) : userInfo.getPickedExercice();
     $scope.nbQuestions = ($.isEmptyObject(userInfo.getNbQuestions())) ? localStorage.nbQuestions : userInfo.getNbQuestions();
+    $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : userInfo.getProgression();
+    
+    $scope.updateProgression = function(){
+        $scope.results.corrects.forEach(function(correct){
+            var found=false;
+            var i=0;
+            while(!found && i<$scope.progression.length){
+                if($scope.progression[i].type==$scope.previousChoice.type && $scope.progression[i].name==correct) found=true;
+                else i++;
+            }
+            if(found) $scope.progression[i].value++;
+            else $scope.progression.push({type:$scope.previousChoice.type, name:correct, value:1});
+        });
+        
+        $scope.results.incorrects.forEach(function(incorrect){
+            var found=false;
+            var i=0;
+            while(!found && i<$scope.progression.length){
+                if($scope.progression[i].type==$scope.previousChoice.type && $scope.progression[i].name==incorrect) found=true;
+                else i++;
+            }
+            if(found){
+                if($scope.progression[i].value!=0) $scope.progression[i].value--;
+            } 
+        });
+        userInfo.setProgression($scope.progression);
+        localStorage.progression=JSON.stringify($scope.progression);
+    }
     
     $scope.retryFailedKanjis = function(){
         var pickedExercice = {
@@ -33,5 +61,7 @@ app.controller("resultsController", function($scope, $location, userInfo){
     $scope.back = function(){
         $location.path('picker');
     }
+    
+    $scope.updateProgression();
     
 });

@@ -10,6 +10,19 @@ app.controller("dictionnaryController", function($scope, $http, $location, userI
         $scope.loading=false;
     });
     
+    $scope.checkHide = function(kanjiIndex){
+        var hide=false;
+        var containsFav=false;
+        var i=0;
+        while(!containsFav && i<$scope.kanjis[kanjiIndex].readings.length){
+            if($scope.kanjis[kanjiIndex].readings[i].favorite) containsFav=true;
+            else i++;
+        }
+        if($scope.favOnly && !containsFav) hide=true;
+        return hide;
+        
+    }
+    
     $scope.setStarClass = function(kanjiIndex, readingIndex){ 
         var starClass="fa-star-o";
         $scope.kanjis[kanjiIndex].readings[readingIndex].favorite=false;

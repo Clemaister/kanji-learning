@@ -43,7 +43,7 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
                 }
                 break;
             case 'retest':
-                $scope.retest=$scope.settings.retest;
+                $scope.initRetest();
                 $scope.currentReading=$scope.retest[$scope.retestID];
                 $scope.totalQuestions=$scope.settings.nbQuestions;
                 break;
@@ -55,6 +55,18 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
         $($scope.canvas).bind("touchstart", function(e){$scope.startDrawing(e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY); return false;});
         $($scope.canvas).bind("touchmove", function(e){$scope.draw(e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);});
         $($scope.canvas).bind("touchend", function(e){$scope.finishedDrawing();});
+    }
+    
+    $scope.initRetest = function(){
+        $scope.settings.retest.forEach(function(retestName){
+            var found=false;
+            var i=0;
+            while(!found && i<$scope.readings.length){
+                if($scope.readings[i].name==retestName) found=true;
+                else i++;
+            }
+            $scope.retest.push(i);
+        })
     }
     
     $scope.verify = function(e){
@@ -158,9 +170,9 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
     $scope.checkAnswer = function(){
         $scope.correct=($scope.user.answer==$scope.readings[$scope.currentReading].name);
         if(!$scope.correct){
-            $scope.incorrects.push($scope.currentReading);
+            $scope.incorrects.push($scope.readings[$scope.currentReading].name);
         }else{
-            $scope.corrects.push($scope.currentReading);
+            $scope.corrects.push($scope.readings[$scope.currentReading].name);
         }
         $scope.displayAnswer=true;
     }

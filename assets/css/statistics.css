@@ -1,0 +1,29 @@
+.statistics-container .kanji-progression td{
+    text-align: center;
+}
+
+.statistics-container .kanji-progression td.kanji{
+    font-size: 30px;
+    width: 20%;
+}
+
+.statistics-container .kanji-progression td.prog-value div{
+    width: 30%;
+    height: 10%;
+    position: relative;
+    top: 80%;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+.statistics-container .kanji-progression td.prog-value span{
+    color: #00F1FF;
+}
+
+.statistics-container .kanji-progression td.prog-value div.empty{
+    background: #ACD8E5;
+}
+.statistics-container .kanji-progression td.prog-value div.filled{
+    background: #00F1FF;
+}

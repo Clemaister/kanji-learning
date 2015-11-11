@@ -20,11 +20,11 @@
                 <th class='left'>Kanji</th>
                 <th class='right'>Readings</th>
             </tr>
-            <tr ng-repeat="kanji in filtered = (kanjis | filter:searchKanji)" ng-show="!favOnly || (favOnly && kanji.favorite)">
+            <tr ng-repeat="kanji in filtered = (kanjis | filter:searchKanji)" ng-hide="checkHide($index)">
                 <td class='kanji'>{{kanji.name}}</td>
                 <td>
                     <table class='multiline readings'>
-                        <tr ng-repeat="reading in kanji.readings">
+                        <tr ng-repeat="reading in (kanji.readings | filter:searchKanji)"  ng-hide="favOnly && !reading.favorite">
                             <td>
                                 <table class='multiline'>
                                     <tr ng-repeat="category in reading.categories"><td>{{category.desc}}</td></tr>
@@ -33,7 +33,7 @@
                             <td class='name'>{{reading.name}}</td>
                             <td class='hiragana'>{{reading.hiragana}}</td>
                             <td class='romaji'>{{reading.romaji}}</td>
-                            <td class='favorite fa' ng-class="setStarClass($parent.$index, $index)" ng-click="toggleFavorite($parent.$index, $index)"></td>
+                            <td class='favorite fa' ng-class="setStarClass(kanjis.indexOf(kanji), kanji.readings.indexOf(reading))" ng-click="toggleFavorite(kanjis.indexOf(kanji), kanji.readings.indexOf(reading))"></td>
                         </tr>
                     </table>
                 </td>

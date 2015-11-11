@@ -33,6 +33,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         controller  : 'writingController'
     })
     
+    .when('/statistics', {
+        templateUrl : 'app/components/statistics/statisticsView.html',
+        controller  : 'statisticsController'
+    })
+    
     .when('/results', {
         templateUrl : 'app/components/results/resultsView.html',
         controller  : 'resultsController'
