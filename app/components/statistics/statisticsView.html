@@ -6,16 +6,20 @@
             <tr ng-repeat="kanji in progression">
                 <td class='kanji'>{{kanji.name}}</td>
                 <td class='prog-value'>
-                    <div ng-class="kanji.readingVal >= 1 ? 'filled' : 'empty'"></div>
-                    <div ng-class="kanji.readingVal >= 2 ? 'filled' : 'empty'"></div>
-                    <div ng-class="kanji.readingVal >= 3 ? 'filled' : 'empty'"></div>
-                    <span>{{kanji.readingVal}}</span>
+                    <div class="bar"><div ng-if="kanji.readingVal >= 1" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.readingVal >= 2" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.readingVal >= 3" class="filled"></div></div>
+                    <br />
+                    <span ng-if="kanji.readingVal<3">{{kanji.readingVal}}</span>
+                    <span ng-if="kanji.readingVal>=3">Known</span>
                 </td>
                 <td class='prog-value'>
-                    <div ng-class="kanji.writingVal >= 1 ? 'filled' : 'empty'"></div>
-                    <div ng-class="kanji.writingVal >= 2 ? 'filled' : 'empty'"></div>
-                    <div ng-class="kanji.writingVal >= 3 ? 'filled' : 'empty'"></div>
-                    <span>{{kanji.writingVal}}</span>
+                    <div class="bar"><div ng-if="kanji.writingVal >= 1" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.writingVal >= 2" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.writingVal >= 3" class="filled"></div></div>
+                    <br />
+                    <span ng-if="kanji.writingVal<3">{{kanji.writingVal}}</span>
+                    <span ng-if="kanji.writingVal>=3">Known</span>
                 </td>
             </tr>
             <tr class='last'><td class='left'></td><td><span ng-if="progression.length==0">No kanji tested yet</span></td><td class='right'></td></tr>

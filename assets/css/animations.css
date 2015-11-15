@@ -1,0 +1,63 @@
+/* FILLING ============== */
+@keyframes filling{
+    from{width: 0%;}
+    to{width: 100%;}
+}
+
+@-webkit-keyframes filling{
+    from{width: 0%;}
+    to{width: 100%;}
+}
+
+@-moz-keyframes filling{
+    from{width: 0%;}
+    to{width: 100%;}
+}
+
+@-o-keyframes filling{
+    from{width: 0%;}
+    to{width: 100%;}
+}
+
+@-ms-keyframes filling{
+    from{width: 0%;}
+    to{width: 100%;}
+}
+
+/* FADING ================ */
+@keyframes fadeIn{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn{
+    from{
+        -khtml-opacity: 0;
+        opacity: 0;
+    }
+    to{
+        -khtml-opacity: 1;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn{
+    from{-moz-opacity: 0;}
+    to{-moz-opacity: 1;}
+}
+
+@-o-keyframes fadeIn{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+@-ms-keyframes fadeIn{
+    from{
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
+    to{
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
+    }
+}
