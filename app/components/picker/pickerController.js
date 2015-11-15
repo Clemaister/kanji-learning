@@ -12,9 +12,18 @@ app.controller("pickerController", function($scope, $http, $location, userInfo){
         id: 'writing',
         desc: 'Basic writing'
     }];
+    
+    $scope.systems=[{
+        id: 'hiragana',
+        desc: 'Hiragana'
+    },{
+        id: 'romaji',
+        desc: 'Romaji'
+    }];
         
     $scope.userChoice={
         type:'reading',
+        system:'hiragana',
         category:'0',
         nbQuestions:0
     }
@@ -32,6 +41,7 @@ app.controller("pickerController", function($scope, $http, $location, userInfo){
     $scope.startExercice = function(){
         var pickedExercice = {
             type:$scope.userChoice.type,
+            system:$scope.userChoice.system,
             category:$scope.userChoice.category, 
             nbQuestions:parseInt($scope.userChoice.nbQuestions),
             mode:'normal',

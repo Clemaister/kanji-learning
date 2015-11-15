@@ -49,6 +49,7 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
                 
         }
         $scope.readings[$scope.currentReading].done=true;
+        $scope.question = ($scope.settings.system=="hiragana") ? $scope.readings[$scope.currentReading].hiragana : $scope.readings[$scope.currentReading].romaji;
         $scope.loading=false;
         
         $($scope.canvas).bind("touchstart", function(e){$scope.startDrawing(e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY); return false;});
@@ -214,6 +215,7 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
         $scope.displayAnswer=false;
         $scope.user.answer="";
         $scope.drawnKanji=[];
+        $scope.question = ($scope.settings.system=="hiragana") ? $scope.readings[$scope.currentReading].hiragana : $scope.readings[$scope.currentReading].romaji;
     }  
     
     if($scope.settings.category=="-1"){

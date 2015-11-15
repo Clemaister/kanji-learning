@@ -15,7 +15,7 @@
                 </div>
                 <div ng-if="displayAnswer && !correct" class="result-box">
                     <span class="incorrect">Wrong</span><br>
-                    <span class='explanation'>The correct answer was <span class='green-text'>{{readings[currentReading].hiragana}}</span></span></div>
+                    <span class='explanation'>The correct answer was <span class='green-text'>{{correctAnswer}}</span></span></div>
                 <button ng-if="displayAnswer" type="button" ng-click="next()" class='fa fa-check-circle'></button>
             </div>
         </div>

@@ -3,7 +3,7 @@
     <ng-loading ng-show="loading"></ng-loading>
     <div class='question-container writing' ng-show="!loading">
         <div class='kanji-box'>
-            <span>{{readings[currentReading].hiragana}}</span>
+            <span>{{question}}</span>
             
             <div class="answer-box">
                 <div ng-if="displayAnswer && correct" class="result-box">

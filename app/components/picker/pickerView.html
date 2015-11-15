@@ -6,6 +6,10 @@
             <input type='radio' id="{{'type-'+type.id}}" ng-model='userChoice.type' value='{{type.id}}' />
             <label class='radio-label' for="{{'type-'+type.id}}">{{type.desc}}</label>
         </div><br>
+        <div class='system'  ng-repeat='system in systems'>
+            <input type='radio' id="{{'system-'+system.id}}" ng-model='userChoice.system' value='{{system.id}}' />
+            <label class='radio-label' for="{{'system-'+system.id}}">{{system.desc}}</label>
+        </div><br>
         <div class='category' ng-repeat='category in categories'>
             <input type='radio' id="{{'cat-'+category.id}}" ng-model='userChoice.category' value='{{category.id}}' />
             <label class='radio-label' for="{{'cat-'+category.id}}">{{category.desc}}</label>

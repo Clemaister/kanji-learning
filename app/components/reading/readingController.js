@@ -8,6 +8,7 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     $scope.incorrects=[];
     $scope.corrects=[];
     $scope.correct=false;
+    $scope.correctAnswer="";
     $scope.currentReading=0;
     $scope.currentQuestion=1;
     $scope.totalQuestions=0;
@@ -66,8 +67,9 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     }
     
     $scope.checkAnswer = function(){
-
-        $scope.correct=($scope.user.answer==$scope.readings[$scope.currentReading].hiragana);
+        
+        $scope.correctAnswer = ($scope.settings.system=="hiragana") ? $scope.readings[$scope.currentReading].hiragana : $scope.readings[$scope.currentReading].romaji;
+        $scope.correct=($scope.user.answer==$scope.correctAnswer);
         if(!$scope.correct){
             $scope.incorrects.push($scope.readings[$scope.currentReading].name);
         }else{
