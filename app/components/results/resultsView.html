@@ -8,5 +8,21 @@
             <button type='button' ng-click='retry()'>Try again</button>
             <button type='button' ng-click='back()'>New exercice</button>
         </div>
+        
+        <table class='kanji-progression'>
+            <tr class='first'><th class='left'>Kanji</th><th class='right'>Progression</th></tr>
+            <tr ng-repeat="kanji in kanjis">
+                <td class='kanji'>{{kanji.name}}</td>
+                <td class='prog-value'>
+                    <div class="bar"><div ng-if="kanji.value >= 1" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.value >= 2" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.value >= 3" class="filled"></div></div>
+                    <br />
+                    <span ng-if="kanji.value<3">{{kanji.value}}</span>
+                    <span ng-if="kanji.value>=3">Known</span>
+                </td>
+            </tr>
+            <tr class='last'><td class='left'></td><td class='right'></td></tr>
+        </table>
     </div>
 </section>

@@ -19,7 +19,7 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
     }
     
     $scope.edit = function(){
-        $http.get("api/get-kanjis.php?reading_name="+$scope.searchName).success(function(readings, status, headers, config){
+        $http.get("api/get-readings.php?reading_name="+$scope.searchName).success(function(readings, status, headers, config){
 
             if(readings.length==0){
                 alert('Not found');

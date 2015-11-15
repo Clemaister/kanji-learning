@@ -225,6 +225,69 @@ table tr:nth-child(odd){
     background-color: #8cc5ed;
 }
 
+
+.kanji-progression td{
+    text-align: center;
+}
+
+.kanji-progression td.kanji{
+    font-size: 30px;
+    width: 20%;
+}
+
+.kanji-progression td.prog-value .bar{
+    width: 30%;
+    height: 10%;
+    position: relative;
+    top: 80%;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    background: #ACD8E5;
+}
+
+.kanji-progression td.prog-value span{
+    color: #A2FAFF;
+    opacity: 0;
+    animation: fadeIn 0.5s linear forwards;
+    -webkit-animation: fadeIn 0.5s linear forwards;
+    -moz-animation: fadeIn 0.5s linear forwards;
+    -o-animation: fadeIn 0.5s linear forwards;
+    -ms-animation: fadeIn 0.5s linear forwards;
+    animation-delay: 3s;
+    -webkit-animation-delay: 3s;
+    -moz-animation-delay: 3s;
+    -o-animation-delay: 3s;
+    -ms-animation-delay: 3s;
+}
+
+.kanji-progression td.prog-value .bar div.filled{
+    width: 0%;
+    height: 100%;
+    margin: 0px;
+    background: #00F1FF;
+    animation: filling 1s linear forwards;
+    -webkit-animation: filling 1s linear forwards;
+    -moz-animation: filling 1s linear forwards;
+    -o-animation: filling 1s linear forwards;
+    -ms-animation: filling 1s linear forwards;
+}
+
+.kanji-progression td.prog-value .bar:nth-child(2) div.filled{
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    -ms-animation-delay: 1s;
+}
+.kanji-progression td.prog-value .bar:nth-child(3) div.filled{
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+    -moz-animation-delay: 2s;
+    -o-animation-delay: 2s;
+    -ms-animation-delay: 2s;
+}
+
 @media screen and (max-width: 800px) {
     
     .menu-container{

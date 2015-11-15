@@ -28,6 +28,10 @@
     opacity: 0.7;
 }
 
+.results-container .kanji-progression{
+    margin-top: 40px;
+}
+
 @media screen and (max-width: 800px){
     
     .results-container .options button{

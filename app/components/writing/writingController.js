@@ -2,7 +2,6 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
 	
     $scope.loading=true;
     $scope.settings = ($.isEmptyObject(userInfo.getPickedExercice())) ? JSON.parse(localStorage.pickedExercice) : userInfo.getPickedExercice();
-    $scope.kanjis=[];
     $scope.readings=[];
     $scope.favorites=userInfo.getFavorites();
     $scope.displayAnswer=false;
@@ -217,20 +216,13 @@ app.controller("writingController", function($scope, $http, $location, userInfo)
         $scope.drawnKanji=[];
     }  
     
-    $scope.parseReadings = function(){
-        $scope.kanjis.forEach(function(kanji){
-           $scope.readings = $scope.readings.concat(kanji.readings);
-        });
-    }
-    
     if($scope.settings.category=="-1"){
         $scope.readings=$scope.favorites;
         $scope.init();
     }
     else{
-        $http.get("api/get-kanjis.php?category="+$scope.settings.category).success(function(kanjis, status, headers, config){
-            $scope.kanjis=kanjis;
-            $scope.parseReadings();
+        $http.get("api/get-readings.php?category="+$scope.settings.category).success(function(readings, status, headers, config){
+            $scope.readings=readings;
             $scope.init();
         });
     }
