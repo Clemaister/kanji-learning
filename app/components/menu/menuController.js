@@ -1,7 +1,6 @@
 app.controller("menuController", function($scope, $http, $location, userInfo){
     
     $scope.loading=true;
-    $scope.kanjis=[];
     $scope.readings=[];
     $scope.knownReadings=0;
     $scope.knownWritings=0;
@@ -30,15 +29,8 @@ app.controller("menuController", function($scope, $http, $location, userInfo){
         $scope.loading=false;
     }
     
-    $scope.parseReadings = function(){
-        $scope.kanjis.forEach(function(kanji){
-           $scope.readings = $scope.readings.concat(kanji.readings);
-        });
-    }
-    
-    $http.get("api/get-kanjis.php").success(function(kanjis, status, headers, config){
-        $scope.kanjis=kanjis;
-        $scope.parseReadings();
+    $http.get("api/get-readings.php").success(function(readings, status, headers, config){
+        $scope.readings=readings;
         $scope.getProgression();
     });
     
