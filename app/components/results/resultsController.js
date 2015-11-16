@@ -49,6 +49,7 @@ app.controller("resultsController", function($scope, $location, userInfo){
     $scope.retryFailedKanjis = function(){
         var pickedExercice = {
             type:$scope.previousChoice.type,
+            system:$scope.previousChoice.system,
             category:$scope.previousChoice.category,
             nbQuestions:$scope.results.incorrects.length,
             mode:'retest',
@@ -62,6 +63,7 @@ app.controller("resultsController", function($scope, $location, userInfo){
     $scope.retry = function(){
         var pickedExercice = {
             type:$scope.previousChoice.type,
+            system:$scope.previousChoice.system,
             category:$scope.previousChoice.category,
             nbQuestions:$scope.nbQuestions,
             mode:'normal',
@@ -72,8 +74,8 @@ app.controller("resultsController", function($scope, $location, userInfo){
         $location.path(pickedExercice.type);
     }
     
-    $scope.back = function(){
-        $location.path('picker');
+    $scope.goTo = function(location){
+        $location.path(location);
     }
     
     $scope.updateProgression();

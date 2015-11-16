@@ -10,6 +10,7 @@
             $object = array(
                 'id'=> $category['id'],
                 'desc'=> $category['desc'],
+                'code'=> $category['code']
             );
 
             array_push($categories, $object);

@@ -38,9 +38,13 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
             url:"api/insert-kanji.php", 
             data:$.param({readings:$scope.readings, editing:$scope.editing}),
             headers: {"Content-Type":"application/x-www-form-urlencoded"}
-        }).success(function(response){
-            console.log(response);
-            $scope.readings=[{name:'', hiragana:'', romaji:'', categories:[$scope.categories[0].id]}];
+        }).success(function(alreadyExists){
+            if(alreadyExists.length!=0){
+                alreadyExists.forEach(function(name){alert(name+' already exists !');});
+            }
+            else{
+                $scope.readings=[{name:'', hiragana:'', romaji:'', categories:[$scope.categories[0].id]}];
+            }
             if($scope.editing) $scope.editing=false;
         });
 

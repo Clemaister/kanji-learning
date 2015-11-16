@@ -7,7 +7,7 @@
         </div>
         <div class='question-box'  ng-show="!loading">
             <div class='input-container'>
-                <input type="text" ng-model="user.answer" ng-keydown="verify($event)" placeholder="ひらがなの読み方" /><button type="button" ng-click="verify()" ng-disabled="displayAnswer" class='fa fa-arrow-right'></button>
+                <input type="text" ng-model="user.answer" ng-keydown="verify($event)" placeholder="Kanji's reading in {{settings.system}}" /><button type="button" ng-click="verify()" ng-disabled="displayAnswer" class='fa fa-arrow-right'></button>
             </div>
             <div class="answer-box">
                 <div ng-if="displayAnswer && correct" class="result-box">

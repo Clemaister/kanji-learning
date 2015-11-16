@@ -15,10 +15,10 @@ app.controller("pickerController", function($scope, $http, $location, userInfo){
     
     $scope.systems=[{
         id: 'hiragana',
-        desc: 'Hiragana'
+        desc: 'Hiragana mode'
     },{
         id: 'romaji',
-        desc: 'Romaji'
+        desc: 'Romaji mode'
     }];
         
     $scope.userChoice={
@@ -31,7 +31,7 @@ app.controller("pickerController", function($scope, $http, $location, userInfo){
     $http.get("api/get-categories.php").success(function(categories, status, headers, config){
         $scope.categories=categories;
         if($scope.favorites.length!=0){
-            $scope.categories.push({id:-1, desc:'★'});
+            $scope.categories.push({id:-1, desc:'Favorites', code:'fav'});
             $scope.userChoice.category=-1
         }
         $scope.categories.push({id:0, desc:'All'});
