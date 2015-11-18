@@ -2,7 +2,7 @@
 <section class='main-container'>
     <div class='statistics-container'>
         <table class='kanji-progression'>
-            <tr class='first'><th class='left'>Kanji</th><th>Reading progression</th><th class='right'>Writing progression</th></tr>
+            <tr class='first'><th class='left'>Kanji</th><th>Reading progression</th><th>Writing progression</th><th class='right'>Meaning progression</th></tr>
             <tr ng-repeat="kanji in progression">
                 <td class='kanji'>{{kanji.name}}</td>
                 <td class='prog-value'>
@@ -21,8 +21,16 @@
                     <span ng-if="kanji.writingVal<3">{{kanji.writingVal}}</span>
                     <span ng-if="kanji.writingVal>=3">Known</span>
                 </td>
+                <td class='prog-value'>
+                    <div class="bar"><div ng-if="kanji.meaningVal >= 1" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.meaningVal >= 2" class="filled"></div></div>
+                    <div class="bar"><div ng-if="kanji.meaningVal >= 3" class="filled"></div></div>
+                    <br />
+                    <span ng-if="kanji.meaningVal<3">{{kanji.meaningVal}}</span>
+                    <span ng-if="kanji.meaningVal>=3">Known</span>
+                </td>
             </tr>
-            <tr class='last'><td class='left'></td><td><span ng-if="progression.length==0">No kanji tested yet</span></td><td class='right'></td></tr>
+            <tr class='last'><td class='left'></td><td><span ng-if="progression.length==0">No kanji tested yet</span></td><td></td><td class='right'></td></tr>
         </table>
     </div>
 </section>

@@ -1,0 +1,18 @@
+<header ng-top-bar title="Meaning" with-back="picker"></header>
+<div class='result-lightbox' ng-if="displayAnswer">
+    <div class='correct fa fa-circle-o' ng-if="correct"></div>
+    <div class='incorrect fa fa-times' ng-if="!correct"></div>
+</div>
+<section class='main-container'>
+    <ng-loading ng-show="loading"></ng-loading>
+    <div class='question-container meaning' ng-show="!loading">
+        <div class='kanji-box'>
+            <span>{{readings[currentReading].name}}</span>
+        </div>
+        <div class='question-box' ng-show="!loading">
+            <div class='possible-answer' ng-repeat='answer in possibleAnswers' ng-click="checkAnswer(answer)" ng-class="{selected: isUserAnswer(answer)}">{{answer}}</div>
+        </div>
+    </div>
+</section>
+<div class="progression" ng-show="!loading">{{(currentQuestion)}}/{{totalQuestions}}</div>
+<footer ng-score></footer>

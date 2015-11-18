@@ -79,11 +79,7 @@
     
     .dictionnary-container .dictionnary .multiline.readings td.name,
     .dictionnary-container .dictionnary .multiline.readings td.hiragana{
-        width: 10px;
-    }
-    
-    .dictionnary-container .dictionnary .multiline.readings td.romaji{
-        width: 100%;
+        width: 10%;
     }
     
 

@@ -124,6 +124,8 @@
 .picker-container .category .fav{background-image: url('../img/favorites.png'); background-size: contain; background-repeat: no-repeat;}
 .picker-container .category .lvl{background-image: url('../img/levels.png'); background-repeat: no-repeat;}
 .picker-container .category .locations{background-image: url('../img/locations.png'); background-size: cover; background-repeat: no-repeat; background-position: left middle;}
+.picker-container .category .colors{background-image: url('../img/colors.png'); background-size: cover; background-repeat: no-repeat; background-position: left middle;}
+.picker-container .category .animals{background-image: url('../img/animals.png'); background-size: contain; background-repeat: no-repeat; background-position: left middle;}
 
 .picker-container .nb-question{
     display: inline-block;

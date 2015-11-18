@@ -17,7 +17,7 @@
     }
 
     $readings = array();
-    foreach($db->query("SELECT readings.id as id, readings.name AS name, hiraganas.name AS hiragana, romajis.name AS romaji FROM readings INNER JOIN kanjis ON kanjis.id=readings.kanji_id INNER JOIN hiraganas ON readings.id=hiraganas.reading_id INNER JOIN romajis ON romajis.reading_id=readings.id INNER JOIN belongs ON belongs.reading_id=readings.id".$whereName.$whereCat) as $reading){
+    foreach($db->query("SELECT readings.id as id, readings.name AS name, hiraganas.name AS hiragana, romajis.name AS romaji, meanings.name AS meaning, examples.name AS example FROM readings INNER JOIN kanjis ON kanjis.id=readings.kanji_id INNER JOIN hiraganas ON readings.id=hiraganas.reading_id INNER JOIN romajis ON romajis.reading_id=readings.id INNER JOIN meanings ON meanings.reading_id=readings.id INNER JOIN examples ON examples.reading_id=readings.id INNER JOIN belongs ON belongs.reading_id=readings.id".$whereName.$whereCat) as $reading){
         
         $categories = array();
         foreach($db->query("SELECT categories.id AS id, categories.desc AS description FROM belongs INNER JOIN categories ON belongs.cat_id=categories.id WHERE belongs.reading_id='".$reading['id']."'") as $category){
@@ -37,6 +37,8 @@
             'name' => $reading['name'],
             'hiragana' => $reading['hiragana'],
             'romaji' => $reading['romaji'],
+            'meaning' => $reading['meaning'],
+            'example' => $reading['example'],
             'categories' => $categories
         );
         

@@ -15,12 +15,14 @@
                 $db->query("DELETE FROM readings WHERE id=".$row['id']);
                 $db->query("DELETE FROM hiraganas WHERE reading_id=".$row['id']);
                 $db->query("DELETE FROM romajis WHERE reading_id=".$row['id']);
+                $db->query("DELETE FROM meanings WHERE reading_id=".$row['id']);
+                $db->query("DELETE FROM examples WHERE reading_id=".$row['id']);
                 $db->query("DELETE FROM belongs WHERE reading_id=".$row['id']);
             }
         }
     }
 
-    $sql=$db->prepare("SELECT readings.name as name, hiraganas.name as hiragana, romajis.name as romaji FROM readings INNER JOIN hiraganas ON hiraganas.reading_id=readings.id INNER JOIN romajis ON  romajis.reading_id=readings.id");
+    $sql=$db->prepare("SELECT readings.name as name, hiraganas.name as hiragana FROM readings INNER JOIN hiraganas ON hiraganas.reading_id=readings.id");
     $sql->execute();
     $existing_readings = $sql->fetchAll();
 
@@ -43,11 +45,12 @@
                     $db->query("INSERT INTO kanjis(name) VALUES('".$character."')");
                     $kanjiID=$db->lastInsertId();
                 }
-
                 $db->query("INSERT INTO readings(kanji_id, name) VALUES('".$kanjiID."', '".$reading['name']."')");
                 $readingID=$db->lastInsertId();
                 $db->query("INSERT INTO hiraganas(reading_id, name) VALUES('".$readingID."', '".$reading['hiragana']."')");
                 $db->query("INSERT INTO romajis(reading_id, name) VALUES('".$readingID."', '".$reading['romaji']."')");
+                $db->query("INSERT INTO meanings(reading_id, name) VALUES('".$readingID."', '".$reading['meaning']."')");
+                $db->query("INSERT INTO examples(reading_id, name) VALUES('".$readingID."', '".$reading['example']."')");
 
                 foreach($reading['categories'] as $category) $db->query("INSERT INTO belongs(reading_id, cat_id) VALUES('".$readingID."', '".$category."')");
             }

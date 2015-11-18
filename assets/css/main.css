@@ -32,10 +32,11 @@ html, .main-view{
 .you-know-readings{
     margin: 0px;
     color: grey;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.you-know-writings{
+.you-know-writings,
+.you-know-meanings{
     margin: 0px;
     color: grey;
 }
@@ -58,6 +59,10 @@ html, .main-view{
 }
 
 .known-writings{
+    color: #20af93;
+}
+
+.known-meanings{
     color: #3ACAA0;
 }
 
@@ -308,6 +313,6 @@ table tr:nth-child(odd){
     
     .main-container{
         padding: 5px;
-        margin-top: 100px;
+        margin-top: 80px;
     }
 }

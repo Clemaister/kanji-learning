@@ -14,7 +14,7 @@ function reading_exists($reading, $readings){
     $exists=false;
     $i=0;
     while(!$exists && $i<count($readings)){
-        if($readings[$i]['name']==$reading['name'] && $readings[$i]['hiragana']==$reading['hiragana'] && $readings[$i]['romaji']==$reading['romaji']) $exists=true;
+        if($readings[$i]['name']==$reading['name'] && $readings[$i]['hiragana']==$reading['hiragana']) $exists=true;
         else $i++;
     }
     return $exists;

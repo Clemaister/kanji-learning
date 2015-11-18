@@ -33,6 +33,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         controller  : 'writingController'
     })
     
+    .when('/meaning', {
+        templateUrl : 'app/components/meaning/meaningView.html',
+        controller  : 'meaningController'
+    })
+    
     .when('/statistics', {
         templateUrl : 'app/components/statistics/statisticsView.html',
         controller  : 'statisticsController'

@@ -1,4 +1,4 @@
-app.controller("readingController", function($scope, $http, $location, userInfo){
+app.controller("meaningController", function($scope, $http, $location, $timeout, userInfo){
 	
     $scope.loading=true;
     $scope.settings = ($.isEmptyObject(userInfo.getPickedExercice())) ? JSON.parse(localStorage.pickedExercice) : userInfo.getPickedExercice();
@@ -15,7 +15,9 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     $scope.retestID=0;
     $scope.percentage=0;
     $scope.nbReadings=0;
-    $scope.user={answer: ""}
+    $scope.user={answer: ""};
+    $scope.possibleAnswers=[];
+    $scope.allReadings=[];
     
     $scope.init = function(){
         
@@ -35,11 +37,13 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
                 break;
                 
         }
+        $scope.generatePossibleAnswers();
         $scope.readings[$scope.currentReading].done=true;
         $scope.loading=false;
     }
     
     $scope.initRetest = function(){
+        
         $scope.settings.retest.forEach(function(retestName){
             var found=false;
             var i=0;
@@ -48,26 +52,28 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
                 else i++;
             }
             $scope.retest.push(i);
-        })
+        });
+        
     }
     
-    $scope.verify = function(e){
-        if(e && e.keyCode==13){
-            if($scope.displayAnswer){
-                $scope.next();
-            }else{
-                $scope.checkAnswer();
+    $scope.generatePossibleAnswers = function(){
+        
+        $scope.possibleAnswers=[];
+        $scope.allReadings.forEach(function(reading){reading.done=false;});
+        for(var i=0; i<3; i++){
+            var random = Math.floor((Math.random() * $scope.allReadings.length-1)+1);
+            if($scope.allReadings[random].done==false && $scope.allReadings[random].meaning!=$scope.readings[$scope.currentReading].meaning){
+                $scope.possibleAnswers.push($scope.allReadings[random].meaning);
+                $scope.allReadings[random].done=true;
             }
         }
-        else if(!e){
-            $scope.displayAnswer=true;
-            $scope.checkAnswer();
-        }
+        $scope.possibleAnswers.splice(Math.floor((Math.random() * $scope.possibleAnswers.length-1)+1), 0, $scope.readings[$scope.currentReading].meaning);
     }
     
-    $scope.checkAnswer = function(){
+    $scope.checkAnswer = function(meaning){
         
-        $scope.correctAnswer = ($scope.settings.system=="hiragana") ? $scope.readings[$scope.currentReading].hiragana : $scope.readings[$scope.currentReading].romaji;
+        $scope.correctAnswer = $scope.readings[$scope.currentReading].meaning;
+        $scope.user.answer=meaning;
         $scope.correct=($scope.user.answer==$scope.correctAnswer);
         if(!$scope.correct){
             $scope.incorrects.push($scope.readings[$scope.currentReading].name);
@@ -75,7 +81,15 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
             $scope.corrects.push($scope.readings[$scope.currentReading].name);
         }
         $scope.displayAnswer=true;
+        
+        $timeout(function(){
+            $scope.next();
+        }, 1000);
     
+    }
+    
+    $scope.isUserAnswer = function(answer){
+        return answer==$scope.user.answer;
     }
 	
 	$scope.next = function(){
@@ -110,6 +124,7 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
                 $scope.currentReading=$scope.retest[$scope.retestID];
                 break;
         }
+        $scope.generatePossibleAnswers();
         $scope.readings[$scope.currentReading].done=true;
         $scope.currentQuestion++;
         $scope.displayAnswer=false;
@@ -118,12 +133,18 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     
     if($scope.settings.category=="-1"){
         $scope.readings=$scope.favorites;
-        $scope.init();
+        $http.get("api/get-readings.php").success(function(readings, status, headers, config){
+            $scope.allReadings=readings;
+            $scope.init();
+        });
     }
     else{
         $http.get("api/get-readings.php?category="+$scope.settings.category).success(function(readings, status, headers, config){
             $scope.readings=readings;
-            $scope.init();
+            $http.get("api/get-readings.php").success(function(readings, status, headers, config){
+                $scope.allReadings=readings;
+                $scope.init();
+            });
         });
     }
     

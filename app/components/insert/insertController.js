@@ -3,7 +3,7 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
     $scope.categories=[];
     $scope.searchName='';
     $scope.editing=false;
-    $scope.readings=[{name:'', hiragana:'', romaji:'', categories:[]}];
+    $scope.readings=[{name:'', hiragana:'', romaji:'', meaning:'', example:'', categories:[]}];
     
     $http.get("api/get-categories.php").success(function(categories, status, headers, config){
         $scope.categories=categories;
@@ -11,7 +11,7 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
     });
     
     $scope.addReading = function(){
-        $scope.readings.push({name:'', hiragana:'', romaji:'', categories:[$scope.categories[0].id]});
+        $scope.readings.push({name:'', hiragana:'', romaji:'', meaning:'', example:'', categories:[$scope.categories[0].id]});
     }
     
     $scope.addCategory = function(index){
@@ -43,7 +43,7 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
                 alreadyExists.forEach(function(name){alert(name+' already exists !');});
             }
             else{
-                $scope.readings=[{name:'', hiragana:'', romaji:'', categories:[$scope.categories[0].id]}];
+                $scope.readings=[{name:'', hiragana:'', romaji:'', meaning:'', example:'', categories:[$scope.categories[0].id]}];
             }
             if($scope.editing) $scope.editing=false;
         });

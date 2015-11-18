@@ -11,6 +11,9 @@ app.controller("pickerController", function($scope, $http, $location, userInfo){
     },{
         id: 'writing',
         desc: 'Basic writing'
+    },{
+        id: 'meaning',
+        desc: 'English meaning'
     }];
     
     $scope.systems=[{
