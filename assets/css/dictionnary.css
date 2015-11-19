@@ -36,7 +36,7 @@
 }
 
 .dictionnary-container .dictionnary .multiline.readings td{
-    width: 20%;
+    width: 30%;
 }
 
 .dictionnary-container .controls{
@@ -79,7 +79,7 @@
     
     .dictionnary-container .dictionnary .multiline.readings td.name,
     .dictionnary-container .dictionnary .multiline.readings td.hiragana{
-        width: 10%;
+        width: 5%;
     }
     
 
