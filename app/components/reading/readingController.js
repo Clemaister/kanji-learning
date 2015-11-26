@@ -3,7 +3,7 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     $scope.loading=true;
     $scope.settings = ($.isEmptyObject(userInfo.getPickedExercice())) ? JSON.parse(localStorage.pickedExercice) : userInfo.getPickedExercice();
     $scope.readings=[];
-    $scope.favorites=userInfo.getFavorites();
+    $scope.favorites = (localStorage.favorites) ? JSON.parse(localStorage.favorites) : [];
     $scope.incorrects=[];
     $scope.corrects=[];
     $scope.correct=false;
@@ -15,6 +15,7 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     $scope.retestID=0;
     $scope.percentage=0;
     $scope.nbReadings=0;
+    $scope.session;
     $scope.user={answer: ""}
     
     $scope.init = function(){
@@ -117,11 +118,23 @@ app.controller("readingController", function($scope, $http, $location, userInfo)
     } 
     
     if($scope.settings.category=="-1"){
-        $scope.readings=$scope.favorites;
-        $scope.init();
+        $http.get("api/user/session_data").success(function(sessionData){
+            $scope.session=sessionData;
+            if($scope.session.status==200){
+                $http.get("api/user/get_fav/"+$scope.session.user_id).success(function(favorites){
+                    $scope.favorites=favorites;
+                    $scope.readings=$scope.favorites;
+                    $scope.init();
+                });
+            }
+            else{
+                $scope.readings=$scope.favorites;
+                $scope.init();
+            }
+        });
     }
     else{
-        $http.get("api/get-readings.php?category="+$scope.settings.category).success(function(readings, status, headers, config){
+        $http.get("api/readings/get_all/"+$scope.settings.category).success(function(readings){
             $scope.readings=readings;
             $scope.init();
         });

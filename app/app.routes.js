@@ -8,6 +8,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         controller  : 'menuController'
     })
     
+    .when('/register', {
+        templateUrl : 'app/components/register/registerView.html',
+        controller  : 'registerController'
+    })
+    
+    .when('/login', {
+        templateUrl : 'app/components/login/loginView.html',
+        controller  : 'loginController'
+    })
+    
     .when('/menu', {
         templateUrl : 'app/components/menu/menuView.html',
         controller  : 'menuController'

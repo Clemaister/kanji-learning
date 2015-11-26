@@ -1,6 +1,6 @@
-app.controller("statisticsController", function($scope, $location, userInfo){
+app.controller("statisticsController", function($scope, $http, $location, userInfo){
     
-    $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : userInfo.getProgression();
+    $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : [];
     
     $scope.formatProgression = function(){
         
@@ -29,5 +29,16 @@ app.controller("statisticsController", function($scope, $location, userInfo){
         
     }
     
-    $scope.formatProgression();
+    $http.get("api/user/session_data").success(function(sessionData){
+        $scope.session=sessionData;
+        if($scope.session.status==200){
+            $http.get("api/user/get_progression/"+$scope.session.user_id).success(function(progression, status, headers, config){
+                $scope.progression=progression;
+                $scope.formatProgression();
+            });
+        }
+        else $scope.formatProgression();
+        
+    });
+    
 });

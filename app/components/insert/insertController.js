@@ -1,11 +1,13 @@
-app.controller("insertController", ['$scope', '$http', function($scope, $http){
+app.controller("insertController", function($scope, $http, $location){
 	
     $scope.categories=[];
     $scope.searchName='';
     $scope.editing=false;
     $scope.readings=[{name:'', hiragana:'', romaji:'', meaning:'', example:'', categories:[]}];
+    $scope.session;
+    $scope.loading=true;
     
-    $http.get("api/get-categories.php").success(function(categories, status, headers, config){
+    $http.get("api/categories/get_all/").success(function(categories, status, headers, config){
         $scope.categories=categories;
         $scope.readings[0].categories.push($scope.categories[0].id);
     });
@@ -19,12 +21,18 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
     }
     
     $scope.edit = function(){
-        $http.get("api/get-readings.php?reading_name="+$scope.searchName).success(function(readings, status, headers, config){
-
+        $http.get("api/readings/search/"+$scope.searchName).success(function(readings, status){
             if(readings.length==0){
                 alert('Not found');
             }
             else{
+                readings.forEach(function(reading){
+                    var formatedCategories=[];
+                    reading.categories.forEach(function(category){
+                        formatedCategories.push(category.id);
+                    });
+                    reading.categories=formatedCategories;
+                });
                 $scope.readings=readings;
                 $scope.editing=true;
             }
@@ -35,7 +43,7 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
         
         $http({
             method:'POST',
-            url:"api/insert-kanji.php", 
+            url:"api/kanjis/insert/", 
             data:$.param({readings:$scope.readings, editing:$scope.editing}),
             headers: {"Content-Type":"application/x-www-form-urlencoded"}
         }).success(function(alreadyExists){
@@ -49,5 +57,16 @@ app.controller("insertController", ['$scope', '$http', function($scope, $http){
         });
 
     }
-}]);
+    
+    $http.get("api/user/session_data").success(function(sessionData){
+        $scope.session=sessionData;
+        if($scope.session.user_id!=1){
+            $location.path("/");
+        }
+        else{
+            $scope.loading=false;
+        }
+    });
+    
+});
 

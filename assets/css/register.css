@@ -1,0 +1,93 @@
+.register-container{
+    width: 300px;
+    height: 600px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.register-container h1{
+    color: #39CA9E;
+}
+
+.register-container p.desc{
+    color: grey;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.register-container label{
+    display: block;
+    margin-top: 15px;
+}
+
+.register-container input{
+    width: 95%;
+    height: 30px;
+    font-size: 25px;
+    outline: none;
+    padding-left: 5px;
+}
+
+.register-container button{
+    height: 50px;
+    font-size: 25px;
+}
+
+.register-container .invalid-form{
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    background-color: #464646;
+    cursor: default;
+}
+
+.register-container .invalid-form:hover{
+    opacity: 1;
+}
+
+.register-container input.valid{
+    background-color: #a6e0a6;
+    border: 1px solid #167416;
+    color: #167416;
+}
+
+.register-container input.invalid{
+    background-color: #FFD0D0;
+    border: 1px solid #B25C5C;
+    color: #A94949;
+}
+
+.register-container .message{
+    color: #898989;
+    font-style: italic;
+}
+
+.error-message{
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: 60px;
+    background-color: #EAA897;
+    border: 1px solid #B25C5C;
+    color: #A94949;
+    border-radius: 10px;
+    line-height: 60px;
+    font-size: 20px;
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    .register-container{
+        margin-bottom: 30px;
+        position: initial;
+        width: 90%;
+    }
+    
+    .register-container .confirm-button{
+        width: 100%;
+    }
+}

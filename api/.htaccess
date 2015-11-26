@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+
+	RewriteEngine on
+
+    # Make sure directory listing is disabled
+	Options +FollowSymLinks -Indexes
+
+    # make HTTP Basic Authentication work on php5-fcgi installs
+    <IfModule mod_fcgid.c>
+        RewriteCond %{HTTP:Authorization} .
+        RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    </IfModule>
+
+	# Send request via index.php if not a real file or directory
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	# deal with php5-cgi first
+	<IfModule mod_fcgid.c>
+        RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+	</IfModule>
+
+	<IfModule !mod_fcgid.c>
+
+		# for normal Apache installations
+		<IfModule mod_php5.c>
+			RewriteRule ^(.*)$ index.php/$1 [L]
+		</IfModule>
+
+		# for Apache FGCI installations
+		<IfModule !mod_php5.c>
+			RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+		</IfModule>
+
+	</IfModule>
+
+</IfModule>

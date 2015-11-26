@@ -43,3 +43,53 @@
 .top-bar .back-button:hover{
     opacity: .75;
 }
+
+.top-bar .logout{
+    border: 0px;
+    background: none;
+    color: white;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    outline: none;
+}
+
+.top-bar .userinfo{
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    
+}
+
+.top-bar .userinfo a{
+    color: white;
+}
+
+.top-bar .userinfo a:visited{
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+    
+    .top-bar .userinfo{
+        margin: auto;
+        display: block;
+        color: #E0E0E0;
+        top: 50px;
+        left: 0px;
+        text-align: center;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        height: 30px;
+        line-height: 30px;
+    }
+    
+    .top-bar .userinfo a{
+        float: left;
+        width: 50%;
+    }
+    
+    .top-bar .logout{
+        color: #F88484;
+    }

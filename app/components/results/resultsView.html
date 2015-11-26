@@ -7,8 +7,10 @@
             <button ng-if='results.incorrects.length!=0' type='button' ng-click='retryFailedKanjis()'>Retry failed kanji</button>
             <button type='button' ng-click="retry()">Try again</button>
             <button type='button' ng-click="goTo('picker')">New exercice</button>
-            <button type='button' ng-click="goTo('menu')">Menu</button>
+            <button type='button' ng-click="goTo('/')">Menu</button>
         </div>
+        
+        <ng-loading ng-if='loading'></ng-loading>
         
         <table class='kanji-progression'>
             <tr class='first'><th class='left'>Kanji</th><th class='right'>Progression</th></tr>

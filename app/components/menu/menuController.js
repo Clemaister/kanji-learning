@@ -8,15 +8,15 @@ app.controller("menuController", function($scope, $http, $location, userInfo){
     $scope.learntKanjis=0;
     $scope.rank='';
     $scope.rankName='';
-    $scope.progression=(localStorage.progression) ? JSON.parse(localStorage.progression) : userInfo.getProgression();
+    $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : [];  
     
-    $scope.getProgression = function(){
+    $scope.formatProgression = function(){
         
         $scope.progression.forEach(function(reading){
             if(reading.value>=3){
                 if(reading.type=="reading") $scope.knownReadings++;
                 else if(reading.type=="writing") $scope.knownWritings++;
-                else if(reading.type=="meanings") $scope.knownMeanings++;
+                else if(reading.type=="meaning") $scope.knownMeanings++;
             } 
         });
         $scope.learntKanjis=$scope.knownReadings+$scope.knownWritings+$scope.knownMeanings;
@@ -31,11 +31,6 @@ app.controller("menuController", function($scope, $http, $location, userInfo){
         $scope.loading=false;
     }
     
-    $http.get("api/get-readings.php").success(function(readings, status, headers, config){
-        $scope.readings=readings;
-        $scope.getProgression();
-    });
-    
     $scope.goTo = function(location){
         $location.path(location);   
     }
@@ -48,7 +43,6 @@ app.controller("menuController", function($scope, $http, $location, userInfo){
           duration: 3000, // Change how long the javascript expects the CSS animation to take
           theme: 'default', // Specify the theme (if you have more than one theme css file on the page)
           animation: 'count' // Count is a simpler animation method which just increments the value,
-                             // use it when you're looking for something more subtle.
         };
 
         var knownReadings = document.querySelector('.known-readings');
@@ -72,6 +66,22 @@ app.controller("menuController", function($scope, $http, $location, userInfo){
         knownMeanings.innerHTML = $scope.knownMeanings;
     }
     
+    $http.get("api/readings/get_all").success(function(readings){
+        $scope.readings=readings;
+    });
     
+    $http.get("api/user/session_data").success(function(sessionData){
+        $scope.session=sessionData;
+        if($scope.session.status==200){
+            $http.get("api/user/get_progression/"+$scope.session.user_id).success(function(progression){
+                $scope.progression=progression;
+                $scope.formatProgression();
+            });
+        }
+        else{
+            $scope.formatProgression();
+        }
+
+    });
     
 });

@@ -1,6 +1,7 @@
-<header ng-top-bar title="Insert" with-back="menu"></header>
+<header ng-top-bar title="Insert" with-back="/"></header>
 <section class='main-container'>
-    <form class='insert-container' ng-submit='submit()'>
+    <ng-loading ng-show="loading"></ng-loading>
+    <form ng-if="!loading" class='insert-container' ng-submit='submit()'>
         <input type='text' ng-model='searchName' placeholder='Reading to search'/><button type='button' ng-click='edit()' class='edit'>Edit</button>
         <br><br>
         <div class='readings' ng-repeat='reading in readings'>

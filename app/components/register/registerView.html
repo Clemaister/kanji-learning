@@ -1,0 +1,69 @@
+<header ng-top-bar title="Kanji Learning"  with-back="/"></header>
+<section class='main-container'>
+    
+    <div class='error-message' ng-if="showError">This email is already in use !</div>
+    <form class='register-container'>
+        
+        <h1>Register</h1>
+        <p class='desc'>By creating an account, your progression and favorites will be saved definitively and will be available on any device.</p>
+        <label>Email</label>
+        <input 
+               type='email' 
+               ng-model='user.email.value' 
+               ng-keyup="checkInput()" 
+               ng-change="checkInput()" 
+               ng-class="user.email.valid ? 'valid' : 'invalid'" 
+               required
+        \>
+        <div ng-if="!user.email.valid" class='message'>{{user.email.message}}</div>
+        
+        <label>Email (confirmation)</label>
+        <input 
+               type='email' 
+               ng-model='user.email.confirm.value' 
+               ng-keyup="checkInput()" 
+               ng-change="checkInput()" 
+               ng-class="user.email.confirm.valid ? 'valid' : 'invalid'" 
+               required
+        \>
+        
+        <label>Username</label>
+        <input 
+               type='text' 
+               ng-model='user.username.value' 
+               ng-keyup="checkInput()" 
+               ng-change="checkInput()" 
+               ng-class="user.username.valid ? 'valid' : 'invalid'" 
+               maxlength='10' 
+               required
+        \>
+        <div ng-if="!user.username.valid" class='message'>{{user.username.message}}</div>
+        
+        <label>Password</label>
+        <input 
+               type='password' 
+               ng-model='user.password.value'
+               ng-keyup="checkInput()"
+               ng-change="checkInput()" 
+               ng-class="user.password.valid ? 'valid' : 'invalid'" 
+               maxlength='16' 
+               required
+        \>
+        <div ng-if="!user.password.valid" class='message'>{{user.password.message}}</div>
+        <label>Password (confirmation)</label>
+        <input 
+               type='password' 
+               ng-model='user.password.confirm.value'
+               ng-keyup="checkInput()"
+               ng-change="checkInput()" 
+               ng-class="user.password.confirm.valid ? 'valid' : 'invalid'" 
+               maxlength='16'
+               required
+        \>
+        
+        <button type='submit' ng-if="validForm" class='confirm-button' ng-click="submit()" ng-disabled='loading'>Create an account</button>
+        <div ng-if="!validForm" class='confirm-button invalid-form'>Form invalid</button>
+        <ng-loading ng-if='loading'></ng-loading>
+    </form>
+    
+</section>

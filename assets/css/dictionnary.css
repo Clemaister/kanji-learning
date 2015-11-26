@@ -36,7 +36,7 @@
 }
 
 .dictionnary-container .dictionnary .multiline.readings td{
-    width: 30%;
+    width: 20%;
 }
 
 .dictionnary-container .controls{
@@ -80,6 +80,12 @@
     .dictionnary-container .dictionnary .multiline.readings td.name,
     .dictionnary-container .dictionnary .multiline.readings td.hiragana{
         width: 5%;
+    }
+    
+    .dictionnary-container .dictionnary .multiline.readings td.romaji,
+    .dictionnary-container .dictionnary .multiline.readings td.meaning{
+        width: 40%;
+        word-break: break-word;
     }
     
 

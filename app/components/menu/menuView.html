@@ -1,4 +1,4 @@
-<header ng-top-bar title="Kanji Learning"></header>
+<header ng-top-bar title="Kanji Learning" login-info="true"></header>
 <section class='main-container'>
     <div class='menu-container'>
         
@@ -7,7 +7,8 @@
         <div class='square-button' ng-click="goTo('statistics')">Statistics</div>
         
         <ng-loading ng-show="loading"></ng-loading>
-            <div ng-show="!loading">
+        <div ng-show="!loading">
+            <a href="insert" ng-if="session.user_id==1">Insert</a>
             <p class='you-know-readings'>You can read <span class='known-readings odometer'></span> kanjis ({{readings.length-knownReadings}} to go).</p>
             <p class='you-know-writings'>You can write <span class='known-writings odometer'></span> kanjis ({{readings.length-knownWritings}} to go).</p>
             <p class='you-know-meanings'>You understand <span class='known-meanings odometer'></span> kanjis ({{readings.length-knownMeanings}} to go).</p>

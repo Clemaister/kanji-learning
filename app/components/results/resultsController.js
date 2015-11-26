@@ -1,13 +1,12 @@
-app.controller("resultsController", function($scope, $location, userInfo){
+app.controller("resultsController", function($scope, $http, $location, userInfo){
     
     $scope.results = ($.isEmptyObject(userInfo.getResults())) ? JSON.parse(localStorage.results) : userInfo.getResults();
     $scope.previousChoice = ($.isEmptyObject(userInfo.getPickedExercice())) ? JSON.parse(localStorage.pickedExercice) : userInfo.getPickedExercice();
     $scope.nbQuestions = ($.isEmptyObject(userInfo.getNbQuestions())) ? localStorage.nbQuestions : userInfo.getNbQuestions();
-    $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : userInfo.getProgression();
+    $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : [];
     $scope.kanjis=[];
     
-    $scope.updateProgression = function(){
-            
+    $scope.calculateProgression = function(){
         $scope.results.corrects.forEach(function(correct){
             var found=false;
             var i=0;
@@ -38,11 +37,28 @@ app.controller("resultsController", function($scope, $location, userInfo){
                 $scope.kanjis.push($scope.progression[i]);
             }
             else{
-                $scope.kanjis.push({name:incorrect, value:0});
+                $scope.kanjis.push({type:$scope.previousChoice.type, name:incorrect, value:0});
             }
         });
-        userInfo.setProgression($scope.progression);
+    }
+    
+    $scope.updateProgression = function(){
+        
         localStorage.progression=JSON.stringify($scope.progression);
+        if($scope.session.status==200){
+            $scope.loading=true;
+            $http({
+                method:'POST',
+                url:"api/user/update_progression", 
+                data:$.param({user:$scope.session, progression:$scope.kanjis}),
+                headers: {"Content-Type":"application/x-www-form-urlencoded"}
+            }).success(function(response){
+                $scope.loading=false;
+            }).error(function(){
+                alert('An error occured. Please check your network connection.');
+                $scope.loading=false;
+            });
+        }
         
     }
     
@@ -77,7 +93,21 @@ app.controller("resultsController", function($scope, $location, userInfo){
     $scope.goTo = function(location){
         $location.path(location);
     }
-    
-    $scope.updateProgression();
+        
+    $http.get("api/user/session_data").success(function(sessionData){
+        $scope.session=sessionData;
+        if($scope.session.status==200){
+            $http.get("api/user/get_progression/"+$scope.session.user_id).success(function(progression){
+                $scope.progression=progression;
+                $scope.calculateProgression();
+                $scope.updateProgression();
+            });
+        }
+        else{
+            $scope.calculateProgression();
+            $scope.updateProgression();
+        }
+        
+    });
     
 });

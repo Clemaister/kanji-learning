@@ -1,0 +1,27 @@
+<header ng-top-bar title="Kanji learning" with-back="/"></header>
+<section class='main-container'>
+    
+    <div class='error-message' ng-if="showError">Email or password incorrect</div>
+    <form class='login-container'>
+        
+        <h1>Login</h1>
+        <label>Email</label>
+        <input 
+               type='email' 
+               ng-model='user.email' 
+               required
+        \>
+        
+        <label>Password</label>
+        <input 
+               type='password' 
+               ng-model='user.password'
+               maxlength='16' 
+               required
+        \>
+        
+        <button type='submit' class='confirm-button' ng-click="submit()" ng-disabled='loading'>Login</button>
+        <ng-loading ng-if='loading'></ng-loading>
+    </form>
+    
+</section>

@@ -3,7 +3,7 @@ app.controller("meaningController", function($scope, $http, $location, $timeout,
     $scope.loading=true;
     $scope.settings = ($.isEmptyObject(userInfo.getPickedExercice())) ? JSON.parse(localStorage.pickedExercice) : userInfo.getPickedExercice();
     $scope.readings=[];
-    $scope.favorites=userInfo.getFavorites();
+    $scope.favorites = (localStorage.favorites) ? JSON.parse(localStorage.favorites) : [];
     $scope.incorrects=[];
     $scope.corrects=[];
     $scope.correct=false;
@@ -17,7 +17,6 @@ app.controller("meaningController", function($scope, $http, $location, $timeout,
     $scope.nbReadings=0;
     $scope.user={answer: ""};
     $scope.possibleAnswers=[];
-    $scope.allReadings=[];
     
     $scope.init = function(){
         
@@ -58,13 +57,14 @@ app.controller("meaningController", function($scope, $http, $location, $timeout,
     
     $scope.generatePossibleAnswers = function(){
         
+        $scope.readings.forEach(function(reading){reading.picked=false});
         $scope.possibleAnswers=[];
-        $scope.allReadings.forEach(function(reading){reading.done=false;});
+        $scope.readings.forEach(function(reading){reading.done=false;});
         for(var i=0; i<3; i++){
-            var random = Math.floor((Math.random() * $scope.allReadings.length-1)+1);
-            if($scope.allReadings[random].done==false && $scope.allReadings[random].meaning!=$scope.readings[$scope.currentReading].meaning){
-                $scope.possibleAnswers.push($scope.allReadings[random].meaning);
-                $scope.allReadings[random].done=true;
+            var random = Math.floor((Math.random() * $scope.readings.length-1)+1);
+            if(!$scope.readings[random].picked && $scope.readings[random].meaning!=$scope.readings[$scope.currentReading].meaning){
+                $scope.possibleAnswers.push($scope.readings[random].meaning);
+                $scope.readings[random].picked=true;
             }
         }
         $scope.possibleAnswers.splice(Math.floor((Math.random() * $scope.possibleAnswers.length-1)+1), 0, $scope.readings[$scope.currentReading].meaning);
@@ -132,19 +132,25 @@ app.controller("meaningController", function($scope, $http, $location, $timeout,
     } 
     
     if($scope.settings.category=="-1"){
-        $scope.readings=$scope.favorites;
-        $http.get("api/get-readings.php").success(function(readings, status, headers, config){
-            $scope.allReadings=readings;
-            $scope.init();
+        $http.get("api/user/session_data").success(function(sessionData){
+            $scope.session=sessionData;
+            if($scope.session.status==200){
+                $http.get("api/user/get_fav/"+$scope.session.user_id).success(function(favorites){
+                    $scope.favorites=favorites;
+                    $scope.readings=$scope.favorites;
+                    $scope.init();
+                });
+            }
+            else{
+                $scope.readings=$scope.favorites;
+                $scope.init();
+            }
         });
     }
     else{
-        $http.get("api/get-readings.php?category="+$scope.settings.category).success(function(readings, status, headers, config){
+        $http.get("api/readings/get_all/"+$scope.settings.category).success(function(readings){
             $scope.readings=readings;
-            $http.get("api/get-readings.php").success(function(readings, status, headers, config){
-                $scope.allReadings=readings;
-                $scope.init();
-            });
+            $scope.init();
         });
     }
     
