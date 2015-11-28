@@ -3,7 +3,6 @@
     display: block;
     margin: auto;
     width: 100%;
-    margin-top: 5%;
 }
 
 .meaning{
@@ -281,7 +280,7 @@ span.green-text{
     
     .question-container, 
     .results-container{
-        margin-top: 0px;
+        margin-top: 2%;
     }
     
     .input-container,

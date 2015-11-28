@@ -4,6 +4,9 @@ app.controller("dictionnaryController", function($scope, $http, $location, userI
     $scope.kanjis=[];
     $scope.favOnly=false;
     $scope.session;
+    $scope.details=false;
+    $scope.currentKanji=0;
+    $scope.currentReading=0;
     $scope.favorites = (localStorage.favorites) ? JSON.parse(localStorage.favorites) : [];
     
     $scope.checkHide = function(kanjiIndex){
@@ -71,6 +74,82 @@ app.controller("dictionnaryController", function($scope, $http, $location, userI
         if($scope.session.status==400) localStorage.favorites=JSON.stringify($scope.favorites);
             
     }
+    
+    $scope.hideDetails = function(){
+        $scope.details=false;
+    }
+    
+    $scope.search = function(filteredReadings){
+        $scope.displayedReadings.push(filteredReadings);
+    }
+    
+    $scope.showDetails = function(kanjiID, readingID){
+        $scope.currentKanji=kanjiID;
+        $scope.currentReading=readingID;
+        $scope.details=true;
+    }
+
+    $scope.prev = function($event){
+        
+        $event.stopPropagation();
+        if($scope.currentReading!=0) $scope.currentReading--;
+        else{
+            var prevName = $scope.filteredKanjis[$scope.currentKanji].filteredReadings[$scope.currentReading].name;
+            $scope.currentKanji--;
+            $scope.currentReading=$scope.filteredKanjis[$scope.currentKanji].filteredReadings.length-1;
+            if($scope.filteredKanjis[$scope.currentKanji].filteredReadings[$scope.currentReading].name==prevName){
+                $scope.prev($event);
+            }
+        }
+        
+    }
+    
+    $scope.hidePrev = function(){
+        return (
+            ($scope.currentKanji==0 && $scope.currentReading==0) ||
+            (
+                $scope.currentKanji==1 && $scope.currentReading==0 && 
+                $scope.filteredKanjis[$scope.currentKanji].filteredReadings[$scope.currentReading].name == 
+                $scope.filteredKanjis[0].filteredReadings[$scope.filteredKanjis[0].filteredReadings.length-1].name
+            )
+        );
+    }
+    
+    $scope.next = function($event){
+        
+        $event.stopPropagation();
+        if($scope.currentReading!=$scope.filteredKanjis[$scope.currentKanji].filteredReadings.length-1) $scope.currentReading++;
+        else{
+            var prevName = $scope.filteredKanjis[$scope.currentKanji].filteredReadings[$scope.currentReading].name;
+            $scope.currentKanji++;
+            $scope.currentReading=0;
+            if($scope.filteredKanjis[$scope.currentKanji].filteredReadings[$scope.currentReading].name==prevName){
+                $scope.next($event);
+            }
+        }
+
+    }
+    
+    $scope.hideNext = function(){
+        return (
+            (
+                $scope.currentKanji==$scope.filteredKanjis.length-1 && 
+                $scope.currentReading==$scope.filteredKanjis[$scope.currentKanji].filteredReadings.length-1
+            ) 
+            ||
+            (
+                $scope.currentKanji==$scope.filteredKanjis.length-2 && 
+                $scope.currentReading==$scope.filteredKanjis[$scope.currentKanji].filteredReadings.length-1 && 
+                $scope.filteredKanjis[$scope.currentKanji].filteredReadings[$scope.currentReading].name == 
+                $scope.filteredKanjis[$scope.currentKanji+1].filteredReadings[0].name
+            )
+        );
+    }
+    
+    $scope.stopProp = function($event){
+        $event.stopPropagation();
+    }
+    
     
     $http.get("api/kanjis/get_all").success(function(kanjis){
         $scope.kanjis=kanjis;

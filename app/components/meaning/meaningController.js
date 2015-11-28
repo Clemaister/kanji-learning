@@ -59,15 +59,17 @@ app.controller("meaningController", function($scope, $http, $location, $timeout,
         
         $scope.readings.forEach(function(reading){reading.picked=false});
         $scope.possibleAnswers=[];
-        $scope.readings.forEach(function(reading){reading.done=false;});
-        for(var i=0; i<3; i++){
+        var i=0;
+        while(i<3){
             var random = Math.floor((Math.random() * $scope.readings.length-1)+1);
             if(!$scope.readings[random].picked && $scope.readings[random].meaning!=$scope.readings[$scope.currentReading].meaning){
                 $scope.possibleAnswers.push($scope.readings[random].meaning);
                 $scope.readings[random].picked=true;
+                i++;
             }
         }
-        $scope.possibleAnswers.splice(Math.floor((Math.random() * $scope.possibleAnswers.length-1)+1), 0, $scope.readings[$scope.currentReading].meaning);
+        var randomPos = Math.floor((Math.random() * 2)+1);
+        $scope.possibleAnswers.splice(randomPos, 0, $scope.readings[$scope.currentReading].meaning);
     }
     
     $scope.checkAnswer = function(meaning){

@@ -4,6 +4,7 @@ app.controller("registerController", function($scope, $http, $location, $timeout
     $scope.loading=false;
     $scope.showError=false;
     $scope.progression = (localStorage.progression) ? JSON.parse(localStorage.progression) : [];
+    $scope.favorites = (localStorage.favorites) ? JSON.parse(localStorage.favorites) : [];
     
     $scope.user={
         email:{
@@ -49,7 +50,7 @@ app.controller("registerController", function($scope, $http, $location, $timeout
         $http({
             method:'POST',
             url:"api/user/create", 
-            data:$.param({user:$scope.user, progression:$scope.progression}),
+            data:$.param({user:$scope.user, progression:$scope.progression, favorites:$scope.favorites}),
             headers: {"Content-Type":"application/x-www-form-urlencoded"}
         }).success(function(response){
             if(response==200){

@@ -26,6 +26,7 @@ class User{
     public function create(){
         
         $progression = json_decode(json_encode($_POST['progression']));
+        $favorites = json_decode(json_encode($_POST['favorites']));
         $existing_emails = $this->db->get("email")->from("users")->execute()->fetchAll();
 
         $i=0;
@@ -39,6 +40,9 @@ class User{
             $userID = $this->db->lastInsertId();
             foreach($progression as $reading){
                 $this->db->insert("progression", array("user_id", "type", "name", "value"))->values(array($userID, $reading->type, $reading->name, $reading->value))->execute();
+            }
+            foreach($favorites as $favorite){
+                $this->db->insert("favorites", array("user_id", "reading_id"))->values(array($userID, $favorite->id));
             }
             $_SESSION['connected']=true;
             $_SESSION['user_id']=$userID;

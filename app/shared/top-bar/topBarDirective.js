@@ -20,7 +20,7 @@ app.directive('ngTopBar', function($location, $http) {
         
         $scope.logout = function(){
             $http.get("api/user/logout").success(function(status, status, headers, config){
-                $location.path("/");
+                $route.reload();
             });
         }
     },

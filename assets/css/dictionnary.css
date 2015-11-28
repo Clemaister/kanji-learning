@@ -1,3 +1,10 @@
+.dictionnary-container{
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;  
+}
+
 .dictionnary-container .dictionnary table{
     border-collapse: collapse;
     margin-bottom: 100px;
@@ -33,6 +40,11 @@
 .dictionnary-container .dictionnary .multiline tr{
     background-color: transparent;
     height: 100%;
+    cursor: pointer;
+}
+
+.dictionnary-container .dictionnary .multiline.readings tr.reading:hover{
+    background: rgba(0, 0, 0, 0.20);
 }
 
 .dictionnary-container .dictionnary .multiline.readings td{
@@ -67,6 +79,113 @@
     vertical-align: middle;
 }
 
+.dictionnary-container .kanji-details{
+    width: 100%;
+    padding: 0;
+    display: table;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 2;
+}
+
+.dictionnary-container .kanji-details .vertical-middle{
+    padding: 0;
+    vertical-align: middle;
+    display: table-cell;
+    margin: 0;
+}
+
+.dictionnary-container .kanji-details .prev,
+.dictionnary-container .kanji-details .next{
+    display: table;
+    width: 10%;
+    font-size: 10vmin;
+    text-align: center;
+    color: white;
+    height: auto;
+    cursor: pointer;
+    position: fixed;
+    top: 0px;
+    height: 100%;
+}
+
+.dictionnary-container .kanji-details .prev p,
+.dictionnary-container .kanji-details .next p{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.dictionnary-container .kanji-details .next{
+    right: 0px;
+}
+
+.dictionnary-container .kanji-details .close{
+    z-index: 3;
+    position: fixed;
+    text-align: center;
+    border-radius: 0px 10px 0px 0px;
+    right: 10%;
+    top: 5%;
+    width: 10%;
+    font-size: 10vmin;
+    background: #b73535;
+    color: red;
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+.dictionnary-container .kanji-details .close:hover{
+    opacity: 0.75;
+}
+
+
+.dictionnary-container .kanji-details table.window{
+    width: 80%;
+    height: 90%;
+    margin: 0 auto;
+}
+
+.dictionnary-container .kanji-details table.window .left{
+    text-align: center;
+    width: 50%;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.dictionnary-container .kanji-details table.window .left table{
+    margin: 0;
+}
+
+.dictionnary-container .kanji-details table.window .left .kanji{
+    font-size: 20vmin;
+}
+
+.dictionnary-container .kanji-details table.window .left .example{
+    font-size: 5vmin;
+    font-style: italic;
+}
+
+.dictionnary-container .kanji-details table.window .right{
+    border-radius: 0px 10px 10px 0px;
+}
+
+.dictionnary-container .kanji-details table.window .right table{
+    margin: 0;
+    text-align: center;
+    font-size: 6vmin;
+}
+
+.dictionnary-container .kanji-details table.window .right table .favorite{
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+    font-size: 12vmin;
+    padding-top: 5%;
+}
+
 @media screen and (max-width: 800px) {
     
     .dictionnary-container .controls .search-kanji{
@@ -86,6 +205,56 @@
     .dictionnary-container .dictionnary .multiline.readings td.meaning{
         width: 40%;
         word-break: break-word;
+    }
+    
+    .dictionnary-container .kanji-details .close{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5%;
+        border-radius: 0px;
+        font-size: 8vmin;
+    }
+    
+    .dictionnary-container .kanji-details table.window{
+        height: auto;
+    }
+    
+    .dictionnary-container .kanji-details table.window tr{
+        border-radius: 10px;
+    }
+    
+    .dictionnary-container .kanji-details table.window .left,
+    .dictionnary-container .kanji-details table.window .right{
+        display: block;
+        padding: 0px;
+    }
+    
+    .dictionnary-container .kanji-details table.window .left{
+        width: 100%;
+    }
+    
+    .dictionnary-container .kanji-details table.window table tr,
+    .dictionnary-container .kanji-details table.window .left .kanji,
+    .dictionnary-container .kanji-details table.window .left .example{
+        height: auto;
+        font-size: 8vmin;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    
+    .dictionnary-container .kanji-details table.window .left .kanji{
+        font-size: 16vmin;
+    }
+    
+    .dictionnary-container .kanji-details table.window .left .example{
+        font-size: 4vmin;
+    }
+    
+    .dictionnary-container .kanji-details table.window tr td{
+        padding-top: 4%;
+        padding-bottom: 4%;
     }
     
 

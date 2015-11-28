@@ -15,16 +15,43 @@
             </div>
         </div>
         <ng-loading ng-show="loading"></ng-loading>
+        
+        <div ng-if="details" class='kanji-details' ng-click="hideDetails()">
+            
+            <div class='close fa fa-times'></div>
+            <div class='vertical-middle'>
+                <div ng-hide="hidePrev()" class='prev' ng-click="prev($event)"><p class='fa fa-chevron-left'></p></div>
+                <table class='window' ng-click="stopProp($event)">
+                    <tr>
+                        <td class='left'>
+                            <table>
+                                <tr><td class='kanji'>{{filteredKanjis[currentKanji].filteredReadings[currentReading].name}}</td></tr>
+                                <tr><td class='example'>{{filteredKanjis[currentKanji].filteredReadings[currentReading].example}}</td></tr>
+                            </table>
+                        <td class='right'>
+                            <table>
+                                <tr><td>{{filteredKanjis[currentKanji].filteredReadings[currentReading].hiragana}}</td></tr>
+                                <tr><td>{{filteredKanjis[currentKanji].filteredReadings[currentReading].romaji}}</td></tr>
+                                <tr><td>{{filteredKanjis[currentKanji].filteredReadings[currentReading].meaning}}</td></tr>
+                                <!--<tr><td class='favorite fa' ng-class="setStarClass(currentKanji, currentReading)" ng-click="toggleFavorite(currentKanji, currentReading)"></td></tr>-->
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class='next' ng-hide="hideNext()" ng-click="next($event)"><p class='fa fa-chevron-right'></p></div>
+            </div>
+        </div>
+        
         <table ng-show="!loading" class='dictionnary'>
             <tr class='first'>
                 <th class='left'>Kanji</th>
                 <th class='right'>Readings</th>
             </tr>
-            <tr ng-repeat="kanji in filtered = (kanjis | filter:searchKanji)" ng-hide="checkHide($index)">
+            <tr ng-repeat="kanji in filteredKanjis = (kanjis | filter:searchKanji)" ng-hide="checkHide($index)">
                 <td class='kanji'>{{kanji.name}}</td>
                 <td>
                     <table class='multiline readings'>
-                        <tr ng-repeat="reading in (kanji.readings | filter:searchKanji)"  ng-hide="favOnly && !reading.favorite">
+                        <tr ng-repeat="reading in filteredKanjis[filteredKanjis.indexOf(kanji)].filteredReadings = (kanji.readings | filter:searchKanji)"  ng-hide="favOnly && !reading.favorite" ng-click="showDetails(filteredKanjis.indexOf(kanji), filteredKanjis[filteredKanjis.indexOf(kanji)].filteredReadings.indexOf(reading))" class='reading'>
                             <td>
                                 <table class='multiline'>
                                     <tr ng-repeat="category in reading.categories"><td>{{category.desc}}</td></tr>
@@ -39,7 +66,7 @@
                     </table>
                 </td>
             </tr>
-            <tr class='last'><td class='left'></td><td class='right'><p ng-show="filtered.length==0">No Kanji was found</p></td></tr>
+            <tr class='last'><td class='left'></td><td class='right'><p ng-show="filteredKanjis.length==0">No Kanji was found</p></td></tr>
         </table>
     </div>
 </section>

@@ -2,7 +2,7 @@
 <section class='main-container'>
     <ng-loading ng-show="loading"></ng-loading>
     <form ng-if="!loading" class='insert-container' ng-submit='submit()'>
-        <input type='text' ng-model='searchName' placeholder='Reading to search'/><button type='button' ng-click='edit()' class='edit'>Edit</button>
+        <input type='text' ng-model='search.name' placeholder='Reading to search'/><button type='button' ng-click='edit()' class='edit'>Edit</button>
         <br><br>
         <div class='readings' ng-repeat='reading in readings'>
             <input type='text' ng-model='reading.name' placeholder='起きる' required/>

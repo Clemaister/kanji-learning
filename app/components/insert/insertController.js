@@ -1,7 +1,7 @@
 app.controller("insertController", function($scope, $http, $location){
 	
     $scope.categories=[];
-    $scope.searchName='';
+    $scope.search={name:''};
     $scope.editing=false;
     $scope.readings=[{name:'', hiragana:'', romaji:'', meaning:'', example:'', categories:[]}];
     $scope.session;
@@ -21,7 +21,7 @@ app.controller("insertController", function($scope, $http, $location){
     }
     
     $scope.edit = function(){
-        $http.get("api/readings/search/"+$scope.searchName).success(function(readings, status){
+        $http.get("api/readings/search/"+$scope.search.name).success(function(readings){
             if(readings.length==0){
                 alert('Not found');
             }
