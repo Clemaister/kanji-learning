@@ -40,6 +40,7 @@ app.controller("resultsController", function($scope, $http, $location, userInfo)
                 $scope.kanjis.push({type:$scope.previousChoice.type, name:incorrect, value:0});
             }
         });
+        
     }
     
     $scope.updateProgression = function(){
@@ -98,6 +99,7 @@ app.controller("resultsController", function($scope, $http, $location, userInfo)
         $scope.session=sessionData;
         if($scope.session.status==200){
             $http.get("api/user/get_progression/"+$scope.session.user_id).success(function(progression){
+                console.log(progression)
                 $scope.progression=progression;
                 $scope.calculateProgression();
                 $scope.updateProgression();

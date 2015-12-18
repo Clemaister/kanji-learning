@@ -61,7 +61,7 @@
                             <td class='hiragana'>{{reading.hiragana}}</td>
                             <td class='romaji'>{{reading.romaji}}</td>
                             <td class='meaning'>{{reading.meaning}}</td>
-                            <td class='favorite fa' ng-class="setStarClass(kanjis.indexOf(kanji), kanji.readings.indexOf(reading))" ng-click="toggleFavorite(kanjis.indexOf(kanji), kanji.readings.indexOf(reading))"></td>
+                            <td class='favorite fa' ng-class="setStarClass(kanjis.indexOf(kanji), kanji.readings.indexOf(reading))" ng-click="toggleFavorite($event, kanjis.indexOf(kanji), kanji.readings.indexOf(reading))"></td>
                         </tr>
                     </table>
                 </td>

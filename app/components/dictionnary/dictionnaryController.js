@@ -37,35 +37,37 @@ app.controller("dictionnaryController", function($scope, $http, $location, userI
         return starClass;
     }
     
-    $scope.toggleFavorite = function(kanjiIndex, readingIndex){
+    $scope.toggleFavorite = function($event, kanjiIndex, readingIndex){
         
-        var favorite = $scope.kanjis[kanjiIndex].readings[readingIndex];
+        $event.stopPropagation();
+        var favoriteChose = $scope.kanjis[kanjiIndex].readings[readingIndex];
         
-        var found=false;
         var i=0;
+        var found=false;
         while(!found && i<$scope.favorites.length){
-            if($scope.favorites[i].name==favorite.name) found=true;
+            if($scope.favorites[i].name==favoriteChose.name) found=true;
             else i++;
         }
         
         if(found){
-            $scope.favorites.splice(i, 1);
+            var favoriteToDelete=$scope.favorites[i];
+            $scope.favorites.splice($scope.favorites.indexOf($scope.favorites[i]), 1);
             if($scope.session.status==200){
                 $http({
                     method:'POST',
                     url:"api/user/remove_fav", 
-                    data:$.param({user:$scope.session, reading_id:favorite.id}),
+                    data:$.param({user:$scope.session, reading_id:favoriteToDelete.id}),
                     headers: {"Content-Type":"application/x-www-form-urlencoded"}
                 });
             }
         }
         else{
-            $scope.favorites.push(favorite);
+            $scope.favorites.push(favoriteChose);
             if($scope.session.status==200){
                 $http({
                     method:'POST',
                     url:"api/user/add_fav", 
-                    data:$.param({user:$scope.session, reading_id:favorite.id}),
+                    data:$.param({user:$scope.session, reading_id:favoriteChose.id}),
                     headers: {"Content-Type":"application/x-www-form-urlencoded"}
                 });
             }
@@ -161,6 +163,7 @@ app.controller("dictionnaryController", function($scope, $http, $location, userI
         if($scope.session.status==200){
             $http.get("api/user/get_fav/"+$scope.session.user_id).success(function(favorites){
                 $scope.favorites=favorites;
+                console.log($scope.favorites)
             });
         }
     });
